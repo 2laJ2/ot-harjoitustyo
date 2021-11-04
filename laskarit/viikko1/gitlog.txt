@@ -1,3 +1,7 @@
+No niin, paikallisen repon README.md tiedostoon on tehty pieniä muutoksia, lisätty ja committoitu vain paikalliseen repoon. 
+Nyt on vuorossa githubin repon gitlog.txt tiedoston muutos.
+
+
 commit a9ad20d7005f3256f81eeeb0a34a6b4de3d5b96b
 Author: 2laJ <tuulajakobsson@hotmail.com>
 Date:   Wed Nov 3 20:33:45 2021 +0200

@@ -9,3 +9,5 @@
 [komentorivi.txt](https://github.com/2laJ2/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt) 
 
 *Hyvältä näyttää!*
+
+*Lisätään siis tekstiä paikalliseen repoon...*

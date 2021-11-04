@@ -1,5 +1,9 @@
-# Kuvavirtoja <h1>
+# Ohjelmistotekniikka, harjoitustyö <h1>
 
-Toiset pitävät **kissa**kuvista, toiset pitävät **koira**kuvista.
+## Tehtävät <h2>
 
-Jotkut taas pitävät enemmän vaikka *käärmeen*kuvista - tai [*perhosen*kuvista](https://fi.wikipedia.org/wiki/Perhoset)
+### Viikko 1 <h3>
+  
+[gitlog.txt]() 
+  
+[komentorivi.txt]() 

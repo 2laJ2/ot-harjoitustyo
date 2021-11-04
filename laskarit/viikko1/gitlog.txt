@@ -1,0 +1,113 @@
+commit a9ad20d7005f3256f81eeeb0a34a6b4de3d5b96b
+Author: 2laJ <tuulajakobsson@hotmail.com>
+Date:   Wed Nov 3 20:33:45 2021 +0200
+
+    poistettu file1, uudelleennimetty file2 -> file22
+
+ tiedostoja/file2.txt                 | 0
+ tiedostoja/{file1.txt => file22.txt} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 8b2cd382beb8afd7de0d18114222af4dbad1fb5a
+Author: 2laJ <tuulajakobsson@hotmail.com>
+Date:   Wed Nov 3 20:15:43 2021 +0200
+
+    hakemisto ja uusia tiedostoja luotu
+
+ tiedostoja/file1.txt | 0
+ tiedostoja/file2.txt | 0
+ tiedostoja/file3.txt | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 6971152cfc9f1c38547aefb42e554030aa3ee8c7
+Author: 2laJ <tuulajakobsson@hotmail.com>
+Date:   Wed Nov 3 20:03:36 2021 +0200
+
+    muutoksia
+
+ eka.txt    | 12 +++++++++---
+ kolmas.txt |  6 +++++-
+ 2 files changed, 14 insertions(+), 4 deletions(-)
+
+commit 0901fadc1db7d0d21a3e6e593f04066db02ddf1c
+Author: 2laJ <tuulajakobsson@hotmail.com>
+Date:   Wed Nov 3 19:58:45 2021 +0200
+
+    tiedoston nimen muutos
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 5a3e4c7a8ec64d25709ff9dca9be7dde35041d94
+Author: 2laJ <tuulajakobsson@hotmail.com>
+Date:   Wed Nov 3 19:53:30 2021 +0200
+
+    tiedoston toinen.txt poisto
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 43452a2967527aab027631a58daef8f029c02caa
+Author: 2laJ <tuulajakobsson@hotmail.com>
+Date:   Wed Nov 3 19:49:42 2021 +0200
+
+    muutoksia
+
+ tiedosto.txt | 19 +++----------------
+ 1 file changed, 3 insertions(+), 16 deletions(-)
+
+commit 9fb53ae494768ce1424b634f92452b9c90fb2227
+Author: 2laJ <tuulajakobsson@hotmail.com>
+Date:   Wed Nov 3 19:46:23 2021 +0200
+
+    muutos
+
+ tiedosto.txt | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+
+commit 7388c8a22da37c5dfbbcd6645b009b5cb2fe4182
+Author: 2laJ <tuulajakobsson@hotmail.com>
+Date:   Wed Nov 3 19:35:00 2021 +0200
+
+    kansio stuff ja jokintiedosto.txt luotu
+
+ stuff/jokintiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 30e7d5a5e9d5ea604de5bcd0c9515c61d20071ca
+Author: 2laJ <tuulajakobsson@hotmail.com>
+Date:   Wed Nov 3 19:31:30 2021 +0200
+
+    muutoksia
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 86f9a428b496959c2ccfb87fdd153f211cdebc23
+Author: 2laJ <tuulajakobsson@hotmail.com>
+Date:   Wed Nov 3 19:29:04 2021 +0200
+
+    tiedosto kolmas.txt luotu
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit a7bd7951b7a98024ca5b6cf073b35d23138d6179
+Author: 2laJ <tuulajakobsson@hotmail.com>
+Date:   Wed Nov 3 19:23:57 2021 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 820cef1dfd7004d619de396d22255985e53fc2a6
+Author: 2laJ <tuulajakobsson@hotmail.com>
+Date:   Wed Nov 3 19:20:31 2021 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)

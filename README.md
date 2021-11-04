@@ -4,6 +4,6 @@
 
 ### Viikko 1 <h3>
   
-[gitlog.txt]() 
+[gitlog.txt](https://github.com/2laJ2/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt) 
   
-[komentorivi.txt]() 
+[komentorivi.txt](https://github.com/2laJ2/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt) 

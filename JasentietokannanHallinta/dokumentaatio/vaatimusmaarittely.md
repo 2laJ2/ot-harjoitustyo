@@ -12,7 +12,7 @@ Alkuvaiheessa sovelluksella on vain yksi käyttäjärooli, eli pääkäyttäjä.
 
 - Sovellus koostuu kolmesta eri näkymästä
 
-<img src="" width="750">
+<img src="https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/kayttoliittymaluonnos.jpg" width="750">
 
 - Sovellus aukeaa kirjautumisnäkymään, josta on mahdollista siirtyä uuden käyttäjän luomisnäkymään tai kirjautumisen onnistuessa sovelluksen käyttönäkymään
   - käyttönäkymässä on mahdollista etsiä jäsentietoja tai luoda uusi jäsen

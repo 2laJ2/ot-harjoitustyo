@@ -1,5 +1,0 @@
-1,Saara;address;phone;true,puheenjohtaja
-2,Mikko;address;phone;false,puheenjohtaja
-3,Jussi;address;phone;false,puheenjohtaja
-4,Fanni;address;phone;false,puheenjohtaja
-5,Manne;address;phone;false,sihteeri

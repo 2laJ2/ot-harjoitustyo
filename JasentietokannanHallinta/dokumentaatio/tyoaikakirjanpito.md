@@ -11,5 +11,5 @@
 |        | 1      | kahden testin luominen |
 |        |        | Jacocon konfigurointi pom.xml-tiedostoon | 
 |        | 1      | UserTest testikattavuus 100%, JasentiedotTest 97% |
-|        | 2      | Dokumentaation päivitystä |
-| yht.	 | 18     | |
+|        | 1      | Dokumentaation päivitystä |
+| yht.	 | 17     | |

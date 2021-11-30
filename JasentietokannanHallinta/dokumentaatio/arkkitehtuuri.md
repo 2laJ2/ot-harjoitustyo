@@ -4,7 +4,7 @@
 
 Ohjelman rakenne on kolmitasoinen kerrosarkkitehtuuri. Koodin pakkausrakenne on seuraava:
 
-<img src="https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/kuvat/pakkausrakenne.jpg" width="160">
+<img src="https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/kuvat/pakkausrakenne.jpg" width="400">
 
 Pakkaus _jasentietokannanhallinta.ui_ sisältää JavaFX:llä toteutetun käyttöliittymän _jasentietokannanhallinta.domain_ sovelluslogiikan ja _jasentietokannanhallinta.dao_ tietojen pysyväistallennuksesta vastaavan koodin.
 

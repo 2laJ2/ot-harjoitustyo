@@ -10,16 +10,16 @@ public class Jasentiedot {
     private User user;
     
     public Jasentiedot(int id, String name, String address, String phone, Boolean done, User user) {
-        this.id=id;
-        this.name=name;
-        this.address=address;
-        this.phone=phone;
-        this.done=done;
-        this.user=user;
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+        this.done = done;
+        this.user = user;
     }
     
     public void setId(int id) {
-        this.id=id;
+        this.id = id;
     }
     
     public int getId() {
@@ -27,15 +27,15 @@ public class Jasentiedot {
     }
     
     public void setName(String name) {
-        this.name=name;
+        this.name = name;
     }
     
     public String getName() {
         return name;
     }
 
-    public void setAddress(String address){
-        this.address=address;
+    public void setAddress(String address) {
+        this.address = address;
     }
     
     public String getAddress() {
@@ -43,33 +43,33 @@ public class Jasentiedot {
     }
 
     public void setPhone(String phone) {
-        this.phone=phone;
+        this.phone = phone;
     }
     
     public String getPhone() {
         return phone;
     }
     
-    public User getUser(){
+    public User getUser() {
         return user;
     }
     
-    public boolean isDone(){
+    public boolean isDone() {
         return done;
     }
     
-    public void setDone(){
-        done=true;
+    public void setDone() {
+        done = true;
     }
     
     @Override
-    public boolean equals(Object obj){
-        Jasentiedot other=(Jasentiedot)obj;
-        return id==other.id;
+    public boolean equals(Object obj) {
+        Jasentiedot other = (Jasentiedot) obj;
+        return id == other.id;
     }
     
-    public void setDoneTo(boolean done){
-        this.done=done;
+    public void setDoneTo(boolean done) {
+        this.done = done;
     }
    
 }

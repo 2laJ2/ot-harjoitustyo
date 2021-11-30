@@ -12,4 +12,12 @@
 |        |        | Jacocon konfigurointi pom.xml-tiedostoon | 
 |        | 1      | UserTest testikattavuus 100%, JasentiedotTest 97% |
 |        | 1      | Dokumentaation päivitystä |
-| yht.	 | 17     | |
+| 29.11. | 1      | Checkstylen käyttöönotto ja checkstyle-virheiden korjausta
+|        | 2.5    | Käyttönäkymän, uuden käyttäjän luomisnäkymän, jäsentietojen hakunäkymän päivitystä |
+|        | 1      | Uuden jäsentietojen luomisnäkymän ja jäsentietojen muokkausnäkymän päivitystä |
+|        | 0.5    | Testauksen päivittäminen |
+| 30.11. | 3      | Käyttöliittymän muokkausta; kaikki viisi näkymää näyttävät oikeanlaisilta, linkit näkymien välillä toimivat |
+|        | 2      | Dokumentaation päivitystä; kuvien siirto omaan kansioon, arkkitehtuuri.md lisäys |  
+|        | 1      | Dokumentaation päivitystä; vaatimusmaarittely.md, Readme.md |
+|        | 1.5    | uuden testin luominen, testaus.md päivittäminen |
+| yht.	 | 30.5   | |

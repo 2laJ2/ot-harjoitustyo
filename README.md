@@ -1,13 +1,80 @@
-# Ohjelmistotekniikka, harjoitustyö <h1>
+# JasentietokannanHallinta
 
-## Tehtävät <h2>
+Sovelluksen avulla käyttäjän on mahdollista käyttää ja hallita urheiluseuran jäsentietokantaa. Sovellusta voi käyttää useampi rekisteröitynyt käyttäjä, joilla on yksilöllisesti määritelty pääsy jäsentietoihin.
 
-### Viikko 1 <h3>
-  
-[gitlog.txt](https://github.com/2laJ2/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt) 
-  
-[komentorivi.txt](https://github.com/2laJ2/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt) 
+## Huomio JavaFX konfiguroinnin aiheuttamista ongelmista
 
-*Hyvältä näyttää!*
+JavaFx konfigurointiongelmien selvittäminen vei huomattavan paljon aikaa. Konfigurointiongelmien selvittämiseksi sovelluksen alustava versio mukailee referenssisovellusta. Tästä voidaan luopua samalla, kun alustavaa harjoitustyötä päivitetään jatkossa vastaamaan harjoitustyön omaa vaatimusmäärittelyä. Liiallinen referenssisovelluksen mukailu johtuu siten JavaFX konfigurointiongelmista ja on luonteeltaan tilapäistä.
 
-*Lisätään siis tekstiä paikalliseen repoon...*
+## Ohjelman toimivuus
+
+Ohjelma toteuttaa seuraavat määrittelydokumentissa kuvaillut toiminnot:
+
+- Sovellus aukeaa kirjautumisnäkymään, josta on mahdollista siirtyä uuden käyttäjän luomisnäkymään tai kirjautumisen onnistuessa sovelluksen käyttönäkymään
+
+- (pää)käyttäjä voi luoda järjestelmään käyttäjätunnuksen
+  - käyttäjätunnuksen täytyy olla uniikki ja pituudeltaan vähintään 3 merkkiä
+  - salasanan täytyy olla uniikki ja pituudeltaan vähintään 10 merkkiä
+
+- (pää)käyttäjä voi kirjautua järjestelmään
+  - olemassaoleva käyttäjätunnus ja salasana syötetään kirjautumislomakkeelle (järjestelmä ei vielä toistaiseksi tarkista, onko syötetty salasana oikein)
+  - jos käyttäjätunnusta ei ole olemassa, järjestelmä antaa ilmoituksen
+
+- (pää)käyttäjä näkee seuran jäsentietokantavalikon
+
+- (pää)käyttäjä voi valita haluamansa toiminnon
+  - tietokannan muokkaus, jolloin (pää)käyttäjä siirtyy uuden jäsenen luontinäkymään (toimintoa uuden jäsenen luonti ei ole vielä lisätty)
+  - jäsentietojen haku tietokannasta halutuilla kriteereillä, jolloin (pää)käyttäjä siirtyy jäsentietojen tarkastelu / muokkausnäkymään (toimintoa jäsentietojen muokkaus ei ole vielä lisätty)
+
+- (pää)käyttäjä voi siirtyä uuden jäsen luontinäkymästä ja jäsentietojen tarkastelu / muokkausnäkymästä takaisin jäsentietokantavalikkoon
+
+- (pää)käyttäjä voi kirjautua ulos järjestelmästä
+
+ 
+## Dokumentaatio
+
+[Vaatimusmäärittely](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/vaatimusmaarittely.md)
+
+[Työaikakirjanpito](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/tyoaikakirjanpito.md)
+
+[Testausdokumentti](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/testaus.md)
+
+[Arkkitehtuurikuvaus](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/arkkitehtuuri.md)
+
+## Komentorivitoiminnot
+
+### Ohjelman käynnistys
+
+Ohjelman käynnistys onnistuu komentoriviltä komennolla
+
+```
+mvn compile exec:java -Dexec.mainClass=jasentietokannanhallinta.ui.JasentietokannanhallintaUi
+```
+
+### Testaus
+
+Testit suoritetaan komennolla
+
+```
+mvn test
+```
+
+Testikattavuusraportti luodaan komennolla
+
+```
+mvn test jacoco:report
+```
+
+Kattavuusraportti avataan tarkasteltavaksi avaamalla selaimella tiedosto target/site/jacoco/index.html
+
+### Checkstyle
+
+Checkstyle suorittaa tiedoston checkstyle.xml määrittelemät tarkistukset komennolla
+
+```
+mvn jxr:jxr checkstyle:checkstyle
+```
+
+Mahdolliset virheilmoitukset löytyvät avaamalla selaimella tiedosto target/site/checkstyle.html 
+
+[checkstyle]("https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/kuvat/checkstyle.png")

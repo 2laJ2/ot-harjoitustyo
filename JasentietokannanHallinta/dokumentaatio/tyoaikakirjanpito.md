@@ -3,7 +3,7 @@
 | päivä	| aika | mitä tein  |
 | :----: | :----- | :----- |
 | 14.11. | 0.5	  | annettuihin taustamateriaaleihin tutustuminen | 
-|	 | 1      | alustavan määrittelydokumentin luominen |
+|	       | 1      | alustavan määrittelydokumentin luominen |
 |        | 0.5    | työn tallentaminen GitHubiin |
 | 22.11. | 3      | alustavan netBeans-projektin luominen |
 | 23.11. | 9      | JavaFX konfigurointi ja pom.xml-tiedoston muokkaaminen |
@@ -29,4 +29,5 @@
 |        |        | userTest testikattavuus 81%, jasentiedotTest 97%, jasentiedotServiceTest 61% |
 |        |        | dokumentaation päivitystä |
 |        | 1      | tutustuminen GitHub Releasen tekemisestä annettuihin ohjeisiin ja materiaaleihin |
+|        | 1      | Releasen tekeminen, ohjelman lataus- ja käynnistysohjeiden lisäys tiedostoon README.md ja työaikakirjanpidon päivittäminen |
 | yht.	 | 40     | |

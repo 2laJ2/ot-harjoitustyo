@@ -81,7 +81,7 @@ Komento
 mvn package
 ```
 
-generoi hakemistoon _target_ suoritettavan jar-tiedoston JasentietokannanHallinta-1.0-SNAPSHOT.jar
+generoi hakemistoon _target_ suoritettavan jar-tiedoston _JasentietokannanHallinta-1.0-SNAPSHOT.jar_, jonka voi suorittaa millä tahansa koneella, jolle on asennettu Javan versio 1.8.
 
 ### Ohjelman lataaminen ja käynnistäminen omalla linux-koneella
 

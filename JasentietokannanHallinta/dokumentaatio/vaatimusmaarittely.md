@@ -6,7 +6,7 @@ Sovelluksen avulla käyttäjien on mahdollista hallita  urheiluseuran  jäsentie
 
 ## Käyttäjät
 
-Alkuvaiheessa sovelluksella on vain yksi käyttäjärooli, eli pääkäyttäjä. Myöhemmin sovellukseen saatetaan lisätä yksilöllisesti rajoitetuilla oikeuksilla varustettu normaali käyttäjä. "tehty"
+Alkuvaiheessa sovelluksella on vain yksi käyttäjärooli, eli pääkäyttäjä. Myöhemmin sovellukseen saatetaan lisätä yksilöllisesti rajoitetuilla oikeuksilla varustettu normaali käyttäjä. 
 
 ## Käyttöliittymäluonnos
 

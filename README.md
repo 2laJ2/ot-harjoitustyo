@@ -83,6 +83,17 @@ mvn package
 
 generoi hakemistoon _target_ suoritettavan jar-tiedoston JasentietokannanHallinta-1.0-SNAPSHOT.jar
 
+### Ohjelman lataaminen ja käynnistäminen omalla linux-koneella
+
+Tallenna sivulta [Release](https://github.com/2laJ2/ot-harjoitustyo/releases/tag/viikko5) löytyvä tiedosto _JasentietokannanHallinta-1.0-SNAPSHOT.jar_ omalle koneellesi esim. kansioon Downloads. 
+
+Ohjelman voi käynnistää komentoriviltä saman tiedostokansion sisältä, mihin tiedosto _JasentietokannanHallinta-1.0-SNAPSHOT.jar_ on tallennettu (esim. Downloads). Käynnistä ohjelma komennolla 
+
+```
+java -jar JasentietokannanHallinta-1.0-SNAPSHOT.jar
+```
+
+Ohjelma luo suorituksen aikana suoritushakemistoon (esim. Downloads) tiedostot _jasentiedotList.txt_ ja _users.txt_, joihin se tallentaa sovelluksen käyttämiä tietoja. Sovellus olettaa, että sillä on nämä tiedostot käytettävissään.
 
 ### Checkstyle
 

@@ -32,7 +32,7 @@ public class JasentietokannanhallintaUi extends Application {
     
     private VBox jasentiedotNodes;
     private Label menuLabel = new Label();
-
+    
     @Override
     public void init() {
         FileUserDao userDao = new FileUserDao("users.txt");
@@ -101,6 +101,7 @@ public class JasentietokannanhallintaUi extends Application {
                 loginMessage.setText("");
                 primaryStage.setScene(mainScene);  
                 usernameInput.setText("");
+                passwordInput.setText("");
             } else {
                 loginMessage.setText("user does not exist");
                 loginMessage.setTextFill(Color.RED);
@@ -109,6 +110,7 @@ public class JasentietokannanhallintaUi extends Application {
 
         createButton.setOnAction(e-> {
             usernameInput.setText("");
+            passwordInput.setText("");
             primaryStage.setScene(newUserScene);   
         });  
 
@@ -162,6 +164,9 @@ public class JasentietokannanhallintaUi extends Application {
                 userCreationMessage.setText("");                
                 loginMessage.setText("new user created");
                 loginMessage.setTextFill(Color.GREEN);
+                newUsernameInput.setText("");
+                newNameInput.setText("");
+                newPasswordInput.setText("");
                 primaryStage.setScene(loginScene);      
             } else {
                 userCreationMessage.setText("username has to be unique");
@@ -170,6 +175,9 @@ public class JasentietokannanhallintaUi extends Application {
 
         });  
         goBackNewUserButton.setOnAction(e-> {
+            newUsernameInput.setText("");
+            newNameInput.setText("");
+            newPasswordInput.setText("");
             primaryStage.setScene(loginScene);
         });
         
@@ -179,6 +187,8 @@ public class JasentietokannanhallintaUi extends Application {
 
         newUserScene = new Scene(newUserPane, 900, 500);
 
+        // main scene
+        
         VBox mainPane = new VBox(10);
         
         HBox menuPane = new HBox(10);    
@@ -195,8 +205,20 @@ public class JasentietokannanhallintaUi extends Application {
         findLabel.setPrefWidth(100);
         Button findMemberButton = new Button("find");
         
-        findMemberButton.setOnAction(e-> { //add find member function
-            primaryStage.setScene(findMemberScene);   
+        Label memberNotFoundLabel = new Label("");
+        memberNotFoundLabel.setPrefWidth(400);
+        
+        findMemberButton.setOnAction(e-> { // add pass information between scenes function
+            String findmembername = findInput.getText();
+            if (jasentiedotService.doesMemberNameExist(findmembername)) {
+                memberNotFoundLabel.setText("");
+                findInput.setText("");
+                primaryStage.setScene(findMemberScene); 
+            } else {
+                memberNotFoundLabel.setText("member not found");
+                memberNotFoundLabel.setTextFill(Color.RED); 
+                findInput.setText("");
+            }
         });
         
         findPane.getChildren().addAll(findLabel, findInput, findMemberButton);
@@ -207,7 +229,7 @@ public class JasentietokannanhallintaUi extends Application {
             primaryStage.setScene(newMemberScene);   
         });
         
-        mainPane.getChildren().addAll(menuPane, findPane, createMemberButton);
+        mainPane.getChildren().addAll(menuPane, memberNotFoundLabel, findPane, createMemberButton);
         
         mainScene = new Scene(mainPane, 900, 500);
         
@@ -238,13 +260,16 @@ public class JasentietokannanhallintaUi extends Application {
         
         HBox createNewMemberButtonPane = new HBox(10);
         createNewMemberButtonPane.setPadding(new Insets(10));
-        Button createNewMemberButton = new Button("create"); //add create function
+        Button createNewMemberButton = new Button("create");
         Button goBackCreateNewMemberButton = new Button("back");
         
         createNewMemberButton.setOnAction(e-> {
             primaryStage.setScene(mainScene);   
         });
         goBackCreateNewMemberButton.setOnAction(e-> {
+            createNewMemberNameInput.setText("");
+            createNewMemberAddressInput.setText("");
+            createNewMemberPhoneInput.setText("");
             primaryStage.setScene(mainScene);
         });
         
@@ -254,33 +279,32 @@ public class JasentietokannanhallintaUi extends Application {
         newMemberPane.getChildren().addAll(createNewMemberNamePane, createNewMemberAddressPane, 
             createNewMemberPhonePane, createNewMemberButtonPane);
         
-        /*
-
         Label memberCreationMessage = new Label();
 
         
-        createNewMemberButton.setOnAction(e-> {
-            String newmembername = newMemberNameInput.getText();
-            String newmemberaddress = newMemberAddressInput.getText();
-            String newmemberphone = newMemberPhoneInput.getText();
-            int newmemberid = 
+        createNewMemberButton.setOnAction(e-> { 
+            String newmembername = createNewMemberNameInput.getText();
+            String newmemberaddress = createNewMemberAddressInput.getText();
+            String newmemberphone = createNewMemberPhoneInput.getText();
             
-            if (newmembername.length() == 2 || newmemberaddress.length() < 2 || newmemberphone.length() < 8) {
-                userCreationMessage.setText("name or address or phone too short");
-                userCreationMessage.setTextFill(Color.RED);              
-            } else if (jasentiedotService.createJasentiedot(membername, memberaddress, memberphone)) {//
-                userCreationMessage.setText("");                
-                loginMessage.setText("new user created");
-                loginMessage.setTextFill(Color.GREEN);
-                primaryStage.setScene(loginScene);      
+            if (newmembername.length() < 3 || newmemberaddress.length() < 3 || newmemberphone.length() < 8) {
+                memberCreationMessage.setText("name or address or phone too short");
+                memberCreationMessage.setTextFill(Color.RED);              
+            } else if (jasentiedotService.createNewMember(newmembername, newmemberaddress, newmemberphone)) {
+                memberCreationMessage.setText("");                
+                memberNotFoundLabel.setText("new member created");
+                memberNotFoundLabel.setTextFill(Color.GREEN);
+                createNewMemberNameInput.setText("");
+                createNewMemberAddressInput.setText("");
+                createNewMemberPhoneInput.setText("");
+                primaryStage.setScene(mainScene);      
             } else {
-                userCreationMessage.setText("username has to be unique");
-                userCreationMessage.setTextFill(Color.RED);        
+                memberCreationMessage.setText("username has to be unique");
+                memberCreationMessage.setTextFill(Color.RED);        
             }
 
         });  
-        */
-        
+                
         newMemberScene = new Scene(newMemberPane, 900, 500);
         
         // find member scene
@@ -313,10 +337,26 @@ public class JasentietokannanhallintaUi extends Application {
         Button goBackButton = new Button("back");
         Button editMemberButton = new Button("edit");
         
+        //add pass string findmembername form main scene to find member scene
+        
+        //String foundname = "name";
+        //String foundaddress = "address";
+        //String foundphone = "phone";
+        
+        //findMemberNameInput.setText(foundname);
+        //findMemberAddressInput.setText(foundaddress);
+        //findMemberPhoneInput.setText(foundphone);
+        
         goBackButton.setOnAction(e-> {
+            findMemberNameInput.setText("");
+            findMemberAddressInput.setText("");
+            findMemberPhoneInput.setText("");
             primaryStage.setScene(mainScene);   
         });
-        editMemberButton.setOnAction(e-> { //add edit function
+        editMemberButton.setOnAction(e-> { //add edit function - change existing member, not create new member
+            findMemberNameInput.setText("");
+            findMemberAddressInput.setText("");
+            findMemberPhoneInput.setText("");
             primaryStage.setScene(mainScene);   
         });
         

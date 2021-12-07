@@ -70,7 +70,7 @@ public class JasentiedotService {
         
     }
     
-    public boolean createNewMember(String name, String address, String phone){
+    public boolean createNewMember(String name, String address, String phone) {
         if (jasentiedotDao.findMemberName(name) != null) {
             return false;
         }
@@ -79,14 +79,20 @@ public class JasentiedotService {
         return true;
     }
     
-    public boolean doesMemberNameExist(String name){
-        if(jasentiedotDao.findMemberName(name) == null) return false;
+    public boolean doesMemberNameExist(String name) {
+        if (jasentiedotDao.findMemberName(name) == null) {
+            return false;
+        }
         return true;
     }
     
-    public Jasentiedot findMemberByName(String name){
+    public Jasentiedot findMemberByName(String name) {
         return jasentiedotDao.findMemberName(name);
     }
     
+    public String getFoundMemberName(String name) {
+        Jasentiedot jasentiedot = jasentiedotDao.findMemberName(name);
+        return jasentiedot.getName();
+    }
 }
         

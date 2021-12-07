@@ -23,10 +23,12 @@ Ohjelma toteuttaa seuraavat määrittelydokumentissa kuvaillut toiminnot:
 - (pää)käyttäjä näkee seuran jäsentietokantavalikon
 
 - (pää)käyttäjä voi valita haluamansa toiminnon
-  - tietokannan muokkaus, jolloin (pää)käyttäjä siirtyy uuden jäsenen luontinäkymään (toimintoa uuden jäsenen luonti ei ole vielä lisätty)
+  - tietokannan muokkaus, jolloin (pää)käyttäjä siirtyy uuden jäsenen luontinäkymään (järjestelmä ei toistaiseksi tallenna jäsentietoja seuraavaa käyttökertaa varten)
   - jäsentietojen haku tietokannasta halutuilla kriteereillä, jolloin (pää)käyttäjä siirtyy jäsentietojen tarkastelu / muokkausnäkymään (toimintoa jäsentietojen muokkaus ei ole vielä lisätty)
+    - järjestelmä löytää samalla käyttökerralla tallennetut jäsentiedot annetun nimen perusteella (toimintoa löydettyjen jäsentietojen tarkastelu ei ole vielä lisätty)
 
 - (pää)käyttäjä voi siirtyä uuden jäsen luontinäkymästä ja jäsentietojen tarkastelu / muokkausnäkymästä takaisin jäsentietokantavalikkoon
+  - siirryttäessä eri näkymään järjestelmä tyhjentää näkymässä olevat jäsentiedot ennen siirtymistä
 
 - (pää)käyttäjä voi kirjautua ulos järjestelmästä
 
@@ -40,6 +42,10 @@ Ohjelma toteuttaa seuraavat määrittelydokumentissa kuvaillut toiminnot:
 [Testausdokumentti](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/testaus.md)
 
 [Arkkitehtuurikuvaus](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/arkkitehtuuri.md)
+
+## Releaset
+
+[Viikko 5](https://github.com/2laJ2/ot-harjoitustyo/releases/tag/viikko5)
 
 ## Komentorivitoiminnot
 
@@ -66,6 +72,17 @@ mvn test jacoco:report
 ```
 
 Kattavuusraportti avataan tarkasteltavaksi avaamalla selaimella tiedosto target/site/jacoco/index.html
+
+### Suoritettavan jarin generointi
+
+Komento
+
+```
+mvn package
+```
+
+generoi hakemistoon _target_ suoritettavan jar-tiedoston JasentietokannanHallinta-1.0-SNAPSHOT.jar
+
 
 ### Checkstyle
 

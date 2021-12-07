@@ -20,4 +20,5 @@
 |        | 2      | Dokumentaation päivitystä; kuvien siirto omaan kansioon, arkkitehtuuri.md lisäys |  
 |        | 1      | Dokumentaation päivitystä; vaatimusmaarittely.md, Readme.md |
 |        | 1.5    | uuden testin luominen, testaus.md päivittäminen |
-| yht.	 | 30.5   | |
+| 6.12.  | 3      | kahden uuden linkkinappulan luonti näkymien välille, uusien metodien luominen ja testien kirjoittaminen niille | 
+| yht.	 | 33.5   | |

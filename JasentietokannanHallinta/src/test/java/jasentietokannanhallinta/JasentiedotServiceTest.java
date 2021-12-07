@@ -50,6 +50,14 @@ public class JasentiedotServiceTest {
         assertTrue(!jasentiedotDao.jasentiedotList.isEmpty());
     }
     
+    
+    @Test 
+    public void equalWhenJasentiedotCreated2() {
+        jasentiedotservice.createNewMember("notsame", "address", "phone");
+        assertTrue(!jasentiedotDao.jasentiedotList.isEmpty());
+    }
+    
+    
     @Test
     public void equalWhenUserLoggedIn() {
         jasentiedotservice.createUser("username", "name", "password");
@@ -74,5 +82,32 @@ public class JasentiedotServiceTest {
         assertTrue(jasentiedotservice.getLoggedUser() == null);
     }
 
+    @Test
+    public void equalWhenFindsMemberByName() {
+        jasentiedotservice.createUser("username", "name", "password");
+        jasentiedotservice.login("username");
+        User loggedinuser = jasentiedotservice.getLoggedUser();
+        jasentiedotservice.createJasentiedot(0, "notsame", "address", "phone", false, loggedinuser);
+        assertTrue(jasentiedotDao.findMemberName("notsame") != null);
+    }
+    
+    @Test
+    public void equalWhenFindsMemberByName2() {
+        jasentiedotservice.createUser("username", "name", "password");
+        jasentiedotservice.login("username");
+        User loggedinuser = jasentiedotservice.getLoggedUser();
+        jasentiedotservice.createJasentiedot(0, "notsame", "address", "phone", false, loggedinuser);
+        assertTrue(jasentiedotservice.findMemberByName("notsame") != null);
+    }
+    
+    @Test
+    public void equalWhenFindsMemberByName3() {
+        jasentiedotservice.createUser("username", "name", "password");
+        jasentiedotservice.login("username");
+        User loggedinuser = jasentiedotservice.getLoggedUser();
+        jasentiedotservice.createJasentiedot(0, "notsame", "address", "phone", false, loggedinuser);
+        assertTrue(jasentiedotservice.doesMemberNameExist("notsame"));
+    }
+    
 }
 

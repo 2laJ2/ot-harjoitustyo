@@ -145,9 +145,11 @@ public class JasentietokannanhallintaUi extends Application {
 
         Label userCreationMessage = new Label();
 
+        HBox createNewUserButtonPane = new HBox(10);
+        createNewUserButtonPane.setPadding(new Insets(10));
         Button createNewUserButton = new Button("create");
-        createNewUserButton.setPadding(new Insets(10));
-
+        Button goBackNewUserButton = new Button("back");
+        
         createNewUserButton.setOnAction(e-> {
             String username = newUsernameInput.getText();
             String name = newNameInput.getText();
@@ -167,8 +169,13 @@ public class JasentietokannanhallintaUi extends Application {
             }
 
         });  
+        goBackNewUserButton.setOnAction(e-> {
+            primaryStage.setScene(loginScene);
+        });
+        
+        createNewUserButtonPane.getChildren().addAll(goBackNewUserButton, createNewUserButton);
 
-        newUserPane.getChildren().addAll(userCreationMessage, newUsernamePane, newNamePane, newPasswordPane, createNewUserButton); 
+        newUserPane.getChildren().addAll(userCreationMessage, newUsernamePane, newNamePane, newPasswordPane, createNewUserButtonPane); 
 
         newUserScene = new Scene(newUserPane, 900, 500);
 
@@ -229,15 +236,23 @@ public class JasentietokannanhallintaUi extends Application {
         createNewMemberPhoneLabel.setPrefWidth(100);
         createNewMemberPhonePane.getChildren().addAll(createNewMemberPhoneLabel, createNewMemberPhoneInput);
         
+        HBox createNewMemberButtonPane = new HBox(10);
+        createNewMemberButtonPane.setPadding(new Insets(10));
         Button createNewMemberButton = new Button("create"); //add create function
-        createNewMemberButton.setPadding(new Insets(10));
+        Button goBackCreateNewMemberButton = new Button("back");
         
         createNewMemberButton.setOnAction(e-> {
             primaryStage.setScene(mainScene);   
         });
+        goBackCreateNewMemberButton.setOnAction(e-> {
+            primaryStage.setScene(mainScene);
+        });
+        
+        createNewMemberButtonPane.getChildren().addAll(goBackCreateNewMemberButton, createNewMemberButton);
+        
         
         newMemberPane.getChildren().addAll(createNewMemberNamePane, createNewMemberAddressPane, 
-            createNewMemberPhonePane, createNewMemberButton);
+            createNewMemberPhonePane, createNewMemberButtonPane);
         
         /*
 

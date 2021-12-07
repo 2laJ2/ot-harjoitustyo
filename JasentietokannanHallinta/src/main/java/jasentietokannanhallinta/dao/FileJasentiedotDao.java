@@ -67,4 +67,7 @@ public class FileJasentiedotDao {
         save();
     }
     
+    public Jasentiedot findMemberName(String name) {
+        return jasentiedotList.stream().filter(u->u.getName().equals(name)).findFirst().orElse(null);
+    }
 }

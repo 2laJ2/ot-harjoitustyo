@@ -10,14 +10,14 @@ Alkuvaiheessa sovelluksella on vain yksi käyttäjärooli, eli pääkäyttäjä.
 
 ## Käyttöliittymäluonnos
 
-- Sovellus koostuu viidestä eri näkymästä: 
+- Sovellus koostuu kolmesta eri näkymästä: 
 
 <img src="https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/kuvat/kayttoliittymaluonnos.jpg" width="750">
 
 - Sovellus aukeaa kirjautumisnäkymään, josta on mahdollista siirtyä uuden käyttäjän luomisnäkymään tai kirjautumisen onnistuessa sovelluksen käyttönäkymään
   - käyttönäkymässä on mahdollista etsiä jäsentietoja tai luoda uusi jäsen 
-  - valittaessa uuden jäsenen luonti sovellus siirtyy uuden jäsenen luomisnäkymään
-  - valittaessa jäsentietojen haku sovellus siirtyy olemassaolevien jäsentietojen käyttönäkymään, jossa on mahdollista muokata tietoja tai palata takaisin muuttamatta tietoja
+  - käyttöliittymässä on mahdollista poistaa jäsen "tehty"
+  - käyttöliittymässä on mahdollista muuttaa olemassaolevan jäsenen osoite- ja puhelinnumerotietoja "tehty"
 
 ## Perusversion tarjoama toiminnallisuus
 
@@ -27,37 +27,41 @@ Alkuvaiheessa sovelluksella on vain yksi käyttäjärooli, eli pääkäyttäjä.
   - käyttäjätunnuksen täytyy olla uniikki ja pituudeltaan vähintään 3 merkkiä 
 
 - (pää)käyttäjä voi kirjautua järjestelmään
-  - olemassaoleva käyttäjätunnus ja salasana syötetään kirjautumislomakkeelle (järjestelmä ei vielä toistaiseksi tarkista, onko syötetty salasana oikein)
+  - olemassaoleva käyttäjätunnus ja salasana syötetään kirjautumislomakkeelle
   - jos käyttäjätunnusta ei ole olemassa, järjestelmä antaa ilmoituksen
+  - kirjautuminen onnistuu, jos syötetty salasana on oikea "tehty"
+  - jos syötetty salasana on väärä, järjestelmä antaa ilmoituksen "tehty"
 
 ### Kirjautumisen jälkeen
 
 - (pää)käyttäjä näkee seuran jäsentietokantavalikon / jäsentietojen hakunäkymän
 
 - (pää)käyttäjä voi valita haluamansa toiminnon
-  - tietokannan muokkaus, jolloin (pää)käyttäjä siirtyy uuden jäsenen luontinäkymään
-  - jäsentietojen haku tietokannasta halutuilla kriteereillä, jolloin (pää)käyttäjä siirtyy jäsentietojen tarkastelu / muokkausnäkymään
+  - jäsentietojen haku tietokannasta halutuilla kriteereillä, jolloin järjestelmä näyttää jäsenen nimi-, osoite- ja puhelinnumerotiedot 
     - järjestelmä löytää samalla käyttökerralla järjestelmään tallennetun jäsenen annetun nimen ollessa oikea (toistaiseksi järjestelmä ei vielä tallenna jäseniä seuraavaa käyttökertaa varten) "tehty"    
-
-- (pää)käyttäjä voi siirtyä uuden jäsen luontinäkymästä ja jäsentietojen tarkastelu / muokkausnäkymästä takaisin jäsentietokantavalikkoon
-  - uuden jäsenen luontinäkymässä voidaan luoda uusi jäsen "tehty"
+  - uuden jäsenen luominen 
     - jäsenestä tallennetaan jäsentietoihin nimi, osoite ja puhelinnumero "tehty"
-  - uuden jäsenen luontinäkymästä voi siirtyä takaisin jäsentietojen hakunäkymään joko luomalla uusi jäsen tai valitsemalla paluutoiminto ilman uuden jäsenen luontia "tehty"
-  - jäsentietojen tarkastelunäkymässä voidaan muokata olemassaolevia jäsentietoja (toimintoa jäsentietojen muokkaus ei ole vielä lisätty, eikä näkymä vielä toistaiseksi näytä löydetyn jäsenen tietoja)
-  - jäsentietojen tarkastelunäkymästä voi siirtyä takaisin jäsentietojen hakunäkymään valitsemalla jäsentietojen muokkaus (muokkaustoimintoa ei vielä lisätty) tai paluutoiminto ilman muokkausta "tehty"
+  - jäsentietojen muokkaus
+    - aiemmin luodun jäsenen osoite- ja puhelinnumerotiedon voi vaihtaa, jolloin ohjelma ei tarkasta, täyttävätkö osoite- ja puhelinnumerotiedot vähimmäispituusvaatimuksen "tehty"
+      (tämä on hyödyllinen ominaisuus siltä varalta, että jäsenen todelliset osoite- ja puhelinnumerotiedot eivät täytä annettuja kriteerejä)
+    - nimeä ei voi vaihtaa muokkaustoiminnolla, jotta vältytään tilanteelta, missä on tehty kirjoitusvirhe ja tallennettu virheelliset tiedot "tehty"
 
-- siirryttäessä näkymästä toiseen järjestelmä tyhjentää tekstikentät, jolloin siirryttäessä samaan näkymään uudelleen näkymässä ei ole edellisen käyttökerran tietoja "tehty"
+  - jäsenen poistaminen
+    - toiminto poistaa pysyvästi jäsenen, jonka nimi on jäsentietokentässä (ei jäsentietojen haku -kentässä) "tehty"
+      (tämä on tarpeellinen toiminto tilanteessa, missä halutaan vaihtaa jäsenen nimi - ensin luodaan uudella nimellä kokonaan uusi jäsen, minkä jälkeen poistetaan vanhalla nimellä luotu jäsen)
+
+- siirryttäessä näkymästä toiseen järjestelmä tyhjentää tekstikentät, jolloin siirryttäessä samaan näkymään uudelleen näkymässä ei ole edellisen käyttökerran tietoja / ilmoituksia "tehty"
 
 - myöhemmin lisättävillä normaaleilla käyttäjillä voidaan rajoittaa pääsy vain osaan jäsentietokannan tiedoista 
 
 - käyttäjä voi kirjautua ulos järjestelmästä
-- seuraavalla käyttökerralla järjestelmä muistaa käyttäjän, käyttäjä voi suoraan kirjautua järjestelmään
+- seuraavalla käyttökerralla järjestelmä muistaa käyttäjän, käyttäjä voi kirjautua järjestelmään antamalla käyttäjätunnuksen ja salasanan, jonka oikeellisuuden järjestelmä tarkistaa "tehty"
 
 ## Jatkokehitysideoita
 
 Perusversion jälkeen järjestelmää täydennetään ajan salliessa esim. seuraavanlaisilla toiminnoilla:
 
-- pääkäyttäjä voi luoda järjestelmään uuden  käyttäjätunnuksen yksilöllisine salasanoineen (normaali käyttäjä) (mutta järjestelmä ei vielä toistaiseksi tarkista onko salasana oikea)
+- pääkäyttäjä voi luoda järjestelmään uuden  käyttäjätunnuksen yksilöllisine salasanoineen (normaali käyttäjä)
   - salasanan täytyy olla uniikki ja pituudeltaan vähintään 10 merkkiä
   - pääkäyttäjä voi määritellä yksilöllisesti uuden käyttäjän pääsyn eri jäsentietoihin, esim. toimistosihteerillä hyvin rajattu pääsy
   - pääkäyttäjä voi lisäksi määritellä erilaisia käyttäjätiimejä seuran tarpeiden mukaan, esim. yhdistyksen hallitus
@@ -75,4 +79,3 @@ Perusversion jälkeen järjestelmää täydennetään ajan salliessa esim. seura
   - ranking-listan mukainen haku (esim. kamppailulajiseurassa vyöarvon mukaan)
 
 - voidaan luoda kullekin käyttäjälle sovelluksen käytön lokitiedosto, johon vain pääkäyttäjällä on pääsy
-

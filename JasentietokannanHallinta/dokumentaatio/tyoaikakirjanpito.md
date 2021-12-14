@@ -3,7 +3,7 @@
 | päivä	| aika | mitä tein  |
 | :----: | :----- | :----- |
 | 14.11. | 0.5	  | annettuihin taustamateriaaleihin tutustuminen | 
-|	       | 1      | alustavan määrittelydokumentin luominen |
+|	 | 1      | alustavan määrittelydokumentin luominen |
 |        | 0.5    | työn tallentaminen GitHubiin |
 | 22.11. | 3      | alustavan netBeans-projektin luominen |
 | 23.11. | 9      | JavaFX konfigurointi ja pom.xml-tiedoston muokkaaminen |
@@ -30,4 +30,21 @@
 |        |        | dokumentaation päivitystä |
 |        | 1      | tutustuminen GitHub Releasen tekemisestä annettuihin ohjeisiin ja materiaaleihin |
 |        | 1      | Releasen tekeminen, ohjelman lataus- ja käynnistysohjeiden lisäys tiedostoon README.md ja työaikakirjanpidon päivittäminen |
-| yht.	 | 40     | |
+| 13.12. | 5      | vähennetty käyttönäkymiä viidestä kolmeen |
+|        |        | poistettu tarpeetonta koodia |
+|        |        | lisätty toiminnot jäsentietojen osoitteen ja puhelinnumeron muokkaus |
+|        | 3      | tutustuminen Javadociin ja Javadocin lisääminen tiedostoihin FileJasentiedotDao.java, FileUserDao.java, Jasentiedot.java, JasentiedotService.java, User.java |
+|        |        | dokumentaation päivitystä; README.md, tyoaikakirjanpito.md |
+| 14.12. | 2      | graafisen käyttöliittymän visuaalisen ilmeen hiominen käyttäjäystävällisemmäksi |
+|        |        | lisätty toiminto poista jäsen |
+|        | 3      | dokumentaation päivitystä vastaamaan käyttöliittymää ja käyttöliittymaluonnoksen päivittäminen |
+|        |        | testauksen päivittäminen; uusien testien luonti ja tarpeettomien poisto |
+|        |        | userTest testikattavuus 88%, jasentiedotTest 100%, jasentiedotServiceTest 92%, dao 93%, domain 93 % |
+|        |        | checkstyle-tarkistus |
+|        | 0.5    | Javadocin päivitys |
+|        | 4.5    | alustavan arkkitehtuurikuvauksen päivitys, sekvenssikaavion lisäys |
+|        |        | alustavan käyttöohjeen lisäys |
+|        |        | dokumentaation päivitys |
+|        |        | koodin laadun tarkastelu, havaintojen kirjaaminen dokumentaatioon |
+|        | 1      | uuden jarin lisäys, GitHub Releasen tekeminen |
+| yht.	 | 60     | |

@@ -6,8 +6,11 @@ import jasentietokannanhallinta.domain.Jasentiedot;
 import jasentietokannanhallinta.dao.FileJasentiedotDao;
 import jasentietokannanhallinta.dao.FileUserDao;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -21,6 +24,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+/**
+ * Graafinen käyttöliittymä
+ */
 public class JasentietokannanhallintaUi extends Application {
     private JasentiedotService jasentiedotService;
     
@@ -33,44 +39,24 @@ public class JasentietokannanhallintaUi extends Application {
     private VBox jasentiedotNodes;
     private Label menuLabel = new Label();
     
+    /**
+     * Ohjelman käynnistyessä tehtävät toimenpiteet
+     */
     @Override
     public void init() {
         FileUserDao userDao = new FileUserDao("users.txt");
         FileJasentiedotDao todoDao = new FileJasentiedotDao("jasentiedotList.txt", userDao);
         jasentiedotService = new JasentiedotService(todoDao, userDao);
     }
-
-    public Node createJasentiedotNode(Jasentiedot jasentiedot) {
-        HBox box = new HBox(10);
-        Label label  = new Label(jasentiedot.getName());
-        label.setMinHeight(28);
-        Button button = new Button("done");
-        button.setOnAction(e-> {
-            jasentiedotService.markDone(jasentiedot.getId());
-            redrawJasentiedotlist();
-        });
-
-        Region spacer = new Region();
-        HBox.setHgrow(spacer, Priority.ALWAYS);
-        box.setPadding(new Insets(0, 5, 0, 5));
-
-        box.getChildren().addAll(label, spacer, button);
-        return box;
-    }
-
-    public void redrawJasentiedotlist() {
-        jasentiedotNodes.getChildren().clear();     
-
-        List<Jasentiedot> undoneJasentiedotList = jasentiedotService.getUndone();
-        undoneJasentiedotList.forEach(jasentiedot-> {
-            jasentiedotNodes.getChildren().add(createJasentiedotNode(jasentiedot));
-        });     
-    }
-
+    
+    /**
+     * Graafisen käyttöliittymän sisältävä osio
+     * @param primaryStage
+     */
     @Override
     public void start(Stage primaryStage) {               
         // login scene
-
+        
         VBox loginPane = new VBox(10);
         
         HBox inputPane = new HBox(10);
@@ -95,13 +81,17 @@ public class JasentietokannanhallintaUi extends Application {
         
         loginButton.setOnAction(e-> {
             String username = usernameInput.getText();
-            String password = passwordInput.getText(); //add password checking function
+            String password = passwordInput.getText();
             menuLabel.setText(username + " logged in...");
             if (jasentiedotService.login(username)) {
-                loginMessage.setText("");
-                primaryStage.setScene(mainScene);  
-                usernameInput.setText("");
-                passwordInput.setText("");
+                if (jasentiedotService.getLoggedUser().getPassword().matches(password)) {
+                    loginMessage.setText("");
+                    primaryStage.setScene(mainScene);  
+                    usernameInput.setText("");
+                    passwordInput.setText("");
+                } else {
+                    loginMessage.setText("password incorrect");
+                }
             } else {
                 loginMessage.setText("user does not exist");
                 loginMessage.setTextFill(Color.RED);
@@ -118,7 +108,7 @@ public class JasentietokannanhallintaUi extends Application {
         
         loginPane.getChildren().addAll(loginMessage, inputPane, passwordPane, loginSceneButtonPane);       
 
-        loginScene = new Scene(loginPane, 900, 500);    
+        loginScene = new Scene(loginPane, 500, 400);    
 
         // new user scene
 
@@ -180,12 +170,12 @@ public class JasentietokannanhallintaUi extends Application {
             newPasswordInput.setText("");
             primaryStage.setScene(loginScene);
         });
-        
+                
         createNewUserButtonPane.getChildren().addAll(goBackNewUserButton, createNewUserButton);
 
         newUserPane.getChildren().addAll(userCreationMessage, newUsernamePane, newNamePane, newPasswordPane, createNewUserButtonPane); 
 
-        newUserScene = new Scene(newUserPane, 900, 500);
+        newUserScene = new Scene(newUserPane, 500, 400);
 
         // main scene
         
@@ -194,13 +184,42 @@ public class JasentietokannanhallintaUi extends Application {
         HBox menuPane = new HBox(10);    
         Button logoutButton = new Button("logout");      
         menuPane.getChildren().addAll(menuLabel, logoutButton);
-        logoutButton.setOnAction(e-> {
-            primaryStage.setScene(loginScene);
-        });        
-       
+        
+        VBox findMemberPane = new VBox(10);
+
+        HBox findMemberNamePane = new HBox(10);
+        findMemberNamePane.setPadding(new Insets(10));
+        TextField findMemberNameInput = new TextField(); 
+        findMemberNameInput.setPrefWidth(200);
+        Label findMemberNameLabel = new Label("name");
+        findMemberNameLabel.setPrefWidth(100);
+        findMemberNamePane.getChildren().addAll(findMemberNameLabel, findMemberNameInput);
+        
+        HBox findMemberAddressPane = new HBox(10);
+        findMemberAddressPane.setPadding(new Insets(10));
+        TextField findMemberAddressInput = new TextField(); 
+        findMemberAddressInput.setPrefWidth(200);
+        Label findMemberAddressLabel = new Label("address");
+        findMemberAddressLabel.setPrefWidth(100);
+        findMemberAddressPane.getChildren().addAll(findMemberAddressLabel, findMemberAddressInput);
+        
+        HBox findMemberPhonePane = new HBox(10);
+        findMemberPhonePane.setPadding(new Insets(10));
+        TextField findMemberPhoneInput = new TextField(); 
+        findMemberPhoneInput.setPrefWidth(200);
+        Label findMemberPhoneLabel = new Label("phone");
+        findMemberPhoneLabel.setPrefWidth(100);
+        findMemberPhonePane.getChildren().addAll(findMemberPhoneLabel, findMemberPhoneInput);
+        
+        findMemberPane.getChildren().addAll(findMemberNamePane, findMemberAddressPane, 
+            findMemberPhonePane);
+        
+        Label memberCreationMessage = new Label();
+        
         HBox findPane = new HBox(10);
         findPane.setPadding(new Insets(10));
         TextField findInput = new TextField(); 
+        findInput.setPrefWidth(200);
         Label findLabel = new Label("find member");
         findLabel.setPrefWidth(100);
         Button findMemberButton = new Button("find");
@@ -208,84 +227,36 @@ public class JasentietokannanhallintaUi extends Application {
         Label memberNotFoundLabel = new Label("");
         memberNotFoundLabel.setPrefWidth(400);
         
-        findMemberButton.setOnAction(e-> { // add pass information between scenes function
+        findMemberButton.setOnAction(e-> { 
+            memberCreationMessage.setText("");   
             String findmembername = findInput.getText();
             if (jasentiedotService.doesMemberNameExist(findmembername)) {
                 memberNotFoundLabel.setText("");
-                findInput.setText("");
-                primaryStage.setScene(findMemberScene); 
+                Jasentiedot jasentiedot = jasentiedotService.findMemberByName(findmembername);
+                findMemberNameInput.setText(findmembername);
+                findMemberAddressInput.setText(jasentiedot.getAddress());
+                findMemberPhoneInput.setText(jasentiedot.getPhone());
             } else {
                 memberNotFoundLabel.setText("member not found");
                 memberNotFoundLabel.setTextFill(Color.RED); 
                 findInput.setText("");
+                findMemberNameInput.setText("");
+                findMemberAddressInput.setText("");
+                findMemberPhoneInput.setText("");
             }
         });
         
-        findPane.getChildren().addAll(findLabel, findInput, findMemberButton);
+        findPane.getChildren().addAll(findLabel, findInput, findMemberButton, findMemberPane);
+        
+        HBox buttonPane = new HBox(10);
+        buttonPane.setPadding(new Insets(10));
         
         Button createMemberButton = new Button("create new member");
         
-        createMemberButton.setOnAction(e-> {
-            primaryStage.setScene(newMemberScene);   
-        });
-        
-        mainPane.getChildren().addAll(menuPane, memberNotFoundLabel, findPane, createMemberButton);
-        
-        mainScene = new Scene(mainPane, 900, 500);
-        
-        // new member scene
-
-        VBox newMemberPane = new VBox(10);
-
-        HBox createNewMemberNamePane = new HBox(10);
-        createNewMemberNamePane.setPadding(new Insets(10));
-        TextField createNewMemberNameInput = new TextField(); 
-        Label createNewMemberNameLabel = new Label("name");
-        createNewMemberNameLabel.setPrefWidth(100);
-        createNewMemberNamePane.getChildren().addAll(createNewMemberNameLabel, createNewMemberNameInput);
-        
-        HBox createNewMemberAddressPane = new HBox(10);
-        createNewMemberAddressPane.setPadding(new Insets(10));
-        TextField createNewMemberAddressInput = new TextField(); 
-        Label createNewMemberAddressLabel = new Label("address");
-        createNewMemberAddressLabel.setPrefWidth(100);
-        createNewMemberAddressPane.getChildren().addAll(createNewMemberAddressLabel, createNewMemberAddressInput);
-        
-        HBox createNewMemberPhonePane = new HBox(10);
-        createNewMemberPhonePane.setPadding(new Insets(10));
-        TextField createNewMemberPhoneInput = new TextField(); 
-        Label createNewMemberPhoneLabel = new Label("phone");
-        createNewMemberPhoneLabel.setPrefWidth(100);
-        createNewMemberPhonePane.getChildren().addAll(createNewMemberPhoneLabel, createNewMemberPhoneInput);
-        
-        HBox createNewMemberButtonPane = new HBox(10);
-        createNewMemberButtonPane.setPadding(new Insets(10));
-        Button createNewMemberButton = new Button("create");
-        Button goBackCreateNewMemberButton = new Button("back");
-        
-        createNewMemberButton.setOnAction(e-> {
-            primaryStage.setScene(mainScene);   
-        });
-        goBackCreateNewMemberButton.setOnAction(e-> {
-            createNewMemberNameInput.setText("");
-            createNewMemberAddressInput.setText("");
-            createNewMemberPhoneInput.setText("");
-            primaryStage.setScene(mainScene);
-        });
-        
-        createNewMemberButtonPane.getChildren().addAll(goBackCreateNewMemberButton, createNewMemberButton);
-        
-        
-        newMemberPane.getChildren().addAll(createNewMemberNamePane, createNewMemberAddressPane, 
-            createNewMemberPhonePane, createNewMemberButtonPane);
-        
-        Label memberCreationMessage = new Label();
-
-        
-        createNewMemberButton.setOnAction(e-> { 
-            String newmembername = createNewMemberNameInput.getText();
-            String newmemberaddress = createNewMemberAddressInput.getText();
-            String newmemberphone = createNewMemberPhoneInput.getText();
+        createMemberButton.setOnAction(e-> { 
+            String newmembername = findMemberNameInput.getText();
+            String newmemberaddress = findMemberAddressInput.getText();
+            String newmemberphone = findMemberPhoneInput.getText();
             
             if (newmembername.length() < 3 || newmemberaddress.length() < 3 || newmemberphone.length() < 8) {
                 memberCreationMessage.setText("name or address or phone too short");
@@ -294,78 +265,86 @@ public class JasentietokannanhallintaUi extends Application {
                 memberCreationMessage.setText("");                
                 memberNotFoundLabel.setText("new member created");
                 memberNotFoundLabel.setTextFill(Color.GREEN);
-                createNewMemberNameInput.setText("");
-                createNewMemberAddressInput.setText("");
-                createNewMemberPhoneInput.setText("");
-                primaryStage.setScene(mainScene);      
+                memberCreationMessage.setText("");
+                findMemberNameInput.setText("");
+                findMemberAddressInput.setText("");
+                findMemberPhoneInput.setText("");
             } else {
                 memberCreationMessage.setText("username has to be unique");
                 memberCreationMessage.setTextFill(Color.RED);        
             }
 
-        });  
-                
-        newMemberScene = new Scene(newMemberPane, 900, 500);
+        }); 
         
-        // find member scene
-        
-        VBox findMemberPane = new VBox(10);
-
-        HBox findMemberNamePane = new HBox(10);
-        findMemberNamePane.setPadding(new Insets(10));
-        TextField findMemberNameInput = new TextField(); 
-        Label findMemberNameLabel = new Label("name");
-        findMemberNameLabel.setPrefWidth(100);
-        findMemberNamePane.getChildren().addAll(findMemberNameLabel, findMemberNameInput);
-        
-        HBox findMemberAddressPane = new HBox(10);
-        findMemberAddressPane.setPadding(new Insets(10));
-        TextField findMemberAddressInput = new TextField(); 
-        Label findMemberAddressLabel = new Label("address");
-        findMemberAddressLabel.setPrefWidth(100);
-        findMemberAddressPane.getChildren().addAll(findMemberAddressLabel, findMemberAddressInput);
-        
-        HBox findMemberPhonePane = new HBox(10);
-        findMemberPhonePane.setPadding(new Insets(10));
-        TextField findMemberPhoneInput = new TextField(); 
-        Label findMemberPhoneLabel = new Label("phone");
-        findMemberPhoneLabel.setPrefWidth(100);
-        findMemberPhonePane.getChildren().addAll(findMemberPhoneLabel, findMemberPhoneInput);
-        
-        HBox findMemberButtonPane = new HBox(10);
-        findMemberButtonPane.setPadding(new Insets(10));
-        Button goBackButton = new Button("back");
         Button editMemberButton = new Button("edit");
         
-        //add pass string findmembername form main scene to find member scene
+        editMemberButton.setOnAction(e-> {
+            memberCreationMessage.setText("");   
+            String findmembername = findInput.getText();
+            Jasentiedot jasentiedot = jasentiedotService.findMemberByName(findmembername);
+            Jasentiedot uusi = jasentiedot;
+            int idUusi = uusi.getId();
+            
+            String newname = findMemberNameInput.getText();
+            boolean exists = jasentiedotService.doesMemberNameExist(newname);
+            Jasentiedot check = jasentiedotService.findMemberByName(newname);
+            int idCheck = check.getId();
+            
+            if (exists == false || idUusi == idCheck) {
+                uusi.setName(newname);
+                uusi.setAddress(findMemberAddressInput.getText());
+                uusi.setPhone(findMemberPhoneInput.getText());
+
+                memberNotFoundLabel.setText("member information changed");
+                memberNotFoundLabel.setTextFill(Color.GREEN);
+
+                findMemberNameInput.setText("");
+                findMemberAddressInput.setText("");
+                findMemberPhoneInput.setText("");
+
+                jasentiedotService.jasentiedotList.remove(jasentiedot);
+                jasentiedotService.jasentiedotList.add(uusi);
+            } else {
+                memberNotFoundLabel.setText("membername exists, choose another name and press create");
+                memberNotFoundLabel.setTextFill(Color.RED);
+            }
+        });
+
+        buttonPane.getChildren().addAll(createMemberButton, editMemberButton);
         
-        //String foundname = "name";
-        //String foundaddress = "address";
-        //String foundphone = "phone";
+        HBox deleteMemberButtonPane = new HBox(10);
+        deleteMemberButtonPane.setPadding(new Insets(10));
+        Button deleteMemberButton = new Button("delete member");
+        deleteMemberButton.setTextFill(Color.RED);
         
-        //findMemberNameInput.setText(foundname);
-        //findMemberAddressInput.setText(foundaddress);
-        //findMemberPhoneInput.setText(foundphone);
+        deleteMemberButton.setOnAction(e-> {
+            String delete = findMemberNameInput.getText();
+            if (jasentiedotService.deleteMember(delete)) {
+                memberNotFoundLabel.setText("member deleted");
+                memberNotFoundLabel.setTextFill(Color.RED);
+
+                findMemberNameInput.setText("");
+                findMemberAddressInput.setText("");
+                findMemberPhoneInput.setText("");
+                findInput.setText("");
+            }
+        });
         
-        goBackButton.setOnAction(e-> {
+        deleteMemberButtonPane.getChildren().addAll(deleteMemberButton);
+        
+        logoutButton.setOnAction(e-> {
+            memberNotFoundLabel.setText("");
             findMemberNameInput.setText("");
             findMemberAddressInput.setText("");
             findMemberPhoneInput.setText("");
-            primaryStage.setScene(mainScene);   
-        });
-        editMemberButton.setOnAction(e-> { //add edit function - change existing member, not create new member
-            findMemberNameInput.setText("");
-            findMemberAddressInput.setText("");
-            findMemberPhoneInput.setText("");
-            primaryStage.setScene(mainScene);   
-        });
+            findInput.setText("");
+            primaryStage.setScene(loginScene);
+        });        
         
-        findMemberButtonPane.getChildren().addAll(goBackButton, editMemberButton);
         
-        findMemberPane.getChildren().addAll(findMemberNamePane, findMemberAddressPane, 
-            findMemberPhonePane, findMemberButtonPane);
+        mainPane.getChildren().addAll(menuPane, memberNotFoundLabel, findPane, findMemberPane, memberCreationMessage, buttonPane, deleteMemberButtonPane);
         
-        findMemberScene = new Scene(findMemberPane, 900, 500);
+        mainScene = new Scene(mainPane, 500, 400);
         
         // setup primary stage
 
@@ -377,6 +356,10 @@ public class JasentietokannanhallintaUi extends Application {
         });
     }
 
+    /**
+     * 
+     * @param args
+     */
     public static void main(String[] args) {
         launch(args);
     }

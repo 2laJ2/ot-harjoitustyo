@@ -4,11 +4,18 @@ import java.io.*;
 import java.util.*;
 import jasentietokannanhallinta.domain.User;
 
+/**
+ * Käyttäjätietojen hallinnasta vastaava luokka
+ */
 public class FileUserDao {
     
     private List<User> users;
     private String file;
     
+    /**
+     * Käyttäjätietojen hallinnasta vastaavan luokan konstruktori
+     * @param file
+     */
     public FileUserDao(String file) {
         users = new ArrayList<>();
         this.file = file;
@@ -40,16 +47,39 @@ public class FileUserDao {
         }
     }
     
+    /**
+     * käyttäjätietojen haku tiedostosta listana
+     * @return lista, joka sisältää kaikki käyttäjät
+     */
     public List<User> getAll() {
         return users;
     }
     
+    /**
+     * käyttäjätietojen haku käyttäjätiedostosta
+     * @param username
+     * @return käyttäjä
+     */
     public User findUsername(String username) {
         return users.stream().filter(u->u.getUsername().equals(username)).findFirst().orElse(null);
     }
     
+    /**
+     * käyttäjän lisääminen käyttäjätiedostoon
+     * @param user
+     */
     public void create(User user) {
         users.add(user);
         save();
     }
+    
+    /**
+     * käyttäjän poistaminen käyttäjätiedostosta
+     * @param user
+     */
+    public void removeUser(User user) {
+        users.remove(user);
+        save();
+    }
+    
 }

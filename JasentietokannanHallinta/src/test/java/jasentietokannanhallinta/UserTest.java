@@ -1,7 +1,7 @@
 package jasentietokannanhallinta;
 
-//import jasentietokannanhallinta.domain.Jasentiedot;
-//import jasentietokannanhallinta.domain.JasentiedotService;
+import jasentietokannanhallinta.domain.Jasentiedot;
+import jasentietokannanhallinta.domain.JasentiedotService;
 import jasentietokannanhallinta.domain.User;
 //import org.junit.After;
 //import org.junit.AfterClass;
@@ -41,8 +41,7 @@ public class UserTest {
         assertTrue(u1.getUsername().equals(u2.getUsername())&&
                    !u1.getName().equals(u2.getName()));
     }
-    
-    
+        
     @Test
     public void nonEqualWhenDifferentType() {
         User u = new User("username", "nameOf", "password");
@@ -65,4 +64,5 @@ public class UserTest {
         u2.setUsername("notsame");
         assertTrue(!u1.getUsername().equals(u2.getUsername()));
     }
+
 }

@@ -1,75 +1,114 @@
 package jasentietokannanhallinta.domain;
 
+/**
+ * Jäsentä kuvaava luokka
+ */
 public class Jasentiedot {
     
     private int id;
     private String name;
     private String address;
     private String phone;
-    public boolean done;
     private User user;
     
-    public Jasentiedot(int id, String name, String address, String phone, Boolean done, User user) {
+    /**
+     * Jäsentä kuvaavan luokan konstruktori
+     * @param id
+     * @param name
+     * @param address
+     * @param phone
+     * @param user
+     */
+    public Jasentiedot(int id, String name, String address, String phone, User user) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.phone = phone;
-        this.done = done;
         this.user = user;
     }
     
+    /**
+     *
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public int getId() {
         return id;
     }
     
+    /**
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
     
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @param address
+     */
     public void setAddress(String address) {
         this.address = address;
     }
     
+    /**
+     *
+     * @return
+     */
     public String getAddress() {
         return address;
     }
 
+    /**
+     *
+     * @param phone
+     */
     public void setPhone(String phone) {
         this.phone = phone;
     }
     
+    /**
+     *
+     * @return
+     */
     public String getPhone() {
         return phone;
     }
     
+    /**
+     *
+     * @return
+     */
     public User getUser() {
         return user;
     }
     
-    public boolean isDone() {
-        return done;
-    }
-    
-    public void setDone() {
-        done = true;
-    }
-    
+    /**
+     *
+     * @param obj
+     * @return
+     */
     @Override
     public boolean equals(Object obj) {
         Jasentiedot other = (Jasentiedot) obj;
         return id == other.id;
     }
     
-    public void setDoneTo(boolean done) {
-        this.done = done;
-    }
    
 }

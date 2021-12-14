@@ -4,7 +4,7 @@ Sovelluksen avulla käyttäjän on mahdollista käyttää ja hallita urheiluseur
 
 ## Huomio JavaFX konfiguroinnin aiheuttamista ongelmista
 
-JavaFx konfigurointiongelmien selvittäminen vei huomattavan paljon aikaa. Konfigurointiongelmien selvittämiseksi sovelluksen alustava versio mukailee referenssisovellusta. Tästä voidaan luopua samalla, kun alustavaa harjoitustyötä päivitetään jatkossa vastaamaan harjoitustyön omaa vaatimusmäärittelyä. Liiallinen referenssisovelluksen mukailu johtuu siten JavaFX konfigurointiongelmista ja on luonteeltaan tilapäistä.
+JavaFx konfigurointiongelmien selvittäminen vei huomattavan paljon aikaa. Tästä syystä sovelluksen ensimmäinen versio mukaili referenssisovellusta. Sovellusta päivitettäessä mukailua on vähenetty sitä mukaa, kuin vaatimusmäärittelyn luettelemia toiminnallisuuksia on lisätty. Sovellus on kuitenkin nykyisessä muodossaan liian suppea, jotta sitä voisi hyödyntää täysipainoisesti alkuperäiseen tarkoitukseen. Sovelluksen graafisen käyttöliittymän koodia kannattaisi selkiyttää FXML-määrittelyllä ja jäsentietojen tallennustapa kannattaisi myöhempiä jatkokehitysideoita silmälläpitäen muuttaa esim. MySQL-tietokannaksi. Tämä poistaisi monia sovelluksen käytettävyyteen vaikuttavia ongelmia, kuten esim. jäsentietojen pysyvän tallennuksen sovelluksen sulkemisen varalta. FXML-määrittelyyn ja MySQL-tietokantaan perehtyminen ja käyttönottaminen vie huomattavan paljon aikaa ja vaatisi käytännössä sovelluksen rakentamista uudelleen lähes alusta alkaen.   
 
 ## Ohjelman toimivuus
 
@@ -31,17 +31,18 @@ Ohjelma toteuttaa seuraavat määrittelydokumentissa kuvaillut toiminnot:
   - siirryttäessä eri näkymään järjestelmä tyhjentää näkymässä olevat jäsentiedot ennen siirtymistä
 
 - (pää)käyttäjä voi kirjautua ulos järjestelmästä
-
  
 ## Dokumentaatio
 
+[Käyttöohje](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/kayttoohje.md)
+
 [Vaatimusmäärittely](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/vaatimusmaarittely.md)
 
-[Työaikakirjanpito](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/tyoaikakirjanpito.md)
+[Arkkitehtuurikuvaus](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/arkkitehtuuri.md)
 
 [Testausdokumentti](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/testaus.md)
 
-[Arkkitehtuurikuvaus](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/arkkitehtuuri.md)
+[Työaikakirjanpito](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/tyoaikakirjanpito.md)
 
 ## Releaset
 
@@ -94,6 +95,16 @@ java -jar JasentietokannanHallinta-1.0-SNAPSHOT.jar
 ```
 
 Ohjelma luo suorituksen aikana suoritushakemistoon (esim. Downloads) tiedostot _jasentiedotList.txt_ ja _users.txt_, joihin se tallentaa sovelluksen käyttämiä tietoja. Sovellus olettaa, että sillä on nämä tiedostot käytettävissään.
+
+### JavaDoc
+
+JavaDoc luodaan komennolla
+
+```
+mvn javadoc:javadoc
+```
+
+JavaDocia tarkastellaan avaamalla selaimella tiedosto _target/site/apidocs/index.html_
 
 ### Checkstyle
 

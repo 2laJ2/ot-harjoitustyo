@@ -17,21 +17,32 @@ Ohjelma toteuttaa seuraavat määrittelydokumentissa kuvaillut toiminnot:
   - salasanan täytyy olla uniikki ja pituudeltaan vähintään 10 merkkiä
 
 - (pää)käyttäjä voi kirjautua järjestelmään
-  - olemassaoleva käyttäjätunnus ja salasana syötetään kirjautumislomakkeelle (järjestelmä ei vielä toistaiseksi tarkista, onko syötetty salasana oikein)
+  - olemassaoleva käyttäjätunnus ja salasana syötetään kirjautumislomakkeelle
   - jos käyttäjätunnusta ei ole olemassa, järjestelmä antaa ilmoituksen
+  - kirjautuminen onnistuu, jos syötetty salasana on oikea
+  - jos syötetty salasana on väärä, järjestelmä antaa ilmoituksen
 
-- (pää)käyttäjä näkee seuran jäsentietokantavalikon
+- (pää)käyttäjä näkee seuran jäsentietokantavalikon / varsinaisen päänäkymän
+  - (pää)käyttäjä voi valita haluamansa toiminnon
+  - jäsentietojen haku tietokannasta halutuilla kriteereillä, jolloin järjestelmä näyttää jäsenen nimi-, osoite- ja puhelinnumerotiedot 
+    - järjestelmä löytää samalla käyttökerralla järjestelmään tallennetun jäsenen annetun nimen perusteella (toistaiseksi järjestelmä ei vielä tallenna jäseniä seuraavaa sovelluksen käynnistyskertaa varten)    
+  - uuden jäsenen luominen 
+    - jäsenestä tallennetaan jäsentietoihin nimi, osoite ja puhelinnumero
+  - jäsentietojen muokkaus
+    - aiemmin luodun jäsenen osoite- ja puhelinnumerotiedon voi vaihtaa, jolloin ohjelma ei tarkasta, täyttävätkö osoite- ja puhelinnumerotiedot vähimmäispituusvaatimuksen
+      (tämä on hyödyllinen ominaisuus siltä varalta, että jäsenen todelliset osoite- ja puhelinnumerotiedot eivät täytä annettuja kriteerejä)
+    - nimeä ei voi vaihtaa muokkaustoiminnolla, jotta vältytään tilanteelta, missä on tehty kirjoitusvirhe ja tallennettu virheelliset tiedot
+  - jäsenen poistaminen
+    - toiminto poistaa pysyvästi jäsenen, jonka nimi on jäsentietokentässä (ei jäsentietojen haku -kentässä)
+      (tämä on tarpeellinen toiminto tilanteessa, missä halutaan vaihtaa jäsenen nimi - ensin luodaan uudella nimellä kokonaan uusi jäsen, minkä jälkeen poistetaan vanhalla nimellä luotu jäsen)
 
-- (pää)käyttäjä voi valita haluamansa toiminnon
-  - tietokannan muokkaus, jolloin (pää)käyttäjä siirtyy uuden jäsenen luontinäkymään (järjestelmä ei toistaiseksi tallenna jäsentietoja seuraavaa käyttökertaa varten)
-  - jäsentietojen haku tietokannasta halutuilla kriteereillä, jolloin (pää)käyttäjä siirtyy jäsentietojen tarkastelu / muokkausnäkymään (toimintoa jäsentietojen muokkaus ei ole vielä lisätty)
-    - järjestelmä löytää samalla käyttökerralla tallennetut jäsentiedot annetun nimen perusteella (toimintoa löydettyjen jäsentietojen tarkastelu ei ole vielä lisätty)
+- siirryttäessä näkymästä toiseen järjestelmä tyhjentää tekstikentät, jolloin siirryttäessä samaan näkymään uudelleen näkymässä ei ole edellisen käyttökerran tietoja / ilmoituksia
 
-- (pää)käyttäjä voi siirtyä uuden jäsen luontinäkymästä ja jäsentietojen tarkastelu / muokkausnäkymästä takaisin jäsentietokantavalikkoon
-  - siirryttäessä eri näkymään järjestelmä tyhjentää näkymässä olevat jäsentiedot ennen siirtymistä
+- myöhemmin lisättävillä normaaleilla käyttäjillä voidaan rajoittaa pääsy vain osaan jäsentietokannan tiedoista 
 
-- (pää)käyttäjä voi kirjautua ulos järjestelmästä
- 
+- käyttäjä voi kirjautua ulos järjestelmästä
+- seuraavalla käyttökerralla järjestelmä muistaa käyttäjän, käyttäjä voi kirjautua järjestelmään antamalla käyttäjätunnuksen ja salasanan, jonka oikeellisuuden järjestelmä tarkistaa
+
 ## Dokumentaatio
 
 [Käyttöohje](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/kayttoohje.md)
@@ -45,6 +56,8 @@ Ohjelma toteuttaa seuraavat määrittelydokumentissa kuvaillut toiminnot:
 [Työaikakirjanpito](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/tyoaikakirjanpito.md)
 
 ## Releaset
+
+[Viikko 6](https://github.com/2laJ2/ot-harjoitustyo/releases/tag/viikko6)
 
 [Viikko 5](https://github.com/2laJ2/ot-harjoitustyo/releases/tag/viikko5)
 
@@ -86,7 +99,7 @@ generoi hakemistoon _target_ suoritettavan jar-tiedoston _JasentietokannanHallin
 
 ### Ohjelman lataaminen ja käynnistäminen omalla linux-koneella
 
-Tallenna sivulta [Release](https://github.com/2laJ2/ot-harjoitustyo/releases/tag/viikko5) löytyvä tiedosto _JasentietokannanHallinta-1.0-SNAPSHOT.jar_ omalle koneellesi esim. kansioon Downloads. 
+Tallenna sivulta [Release](https://github.com/2laJ2/ot-harjoitustyo/releases/tag/viikko6) löytyvä tiedosto _JasentietokannanHallinta-1.0-SNAPSHOT.jar_ omalle koneellesi esim. kansioon Downloads. 
 
 Ohjelman voi käynnistää komentoriviltä saman tiedostokansion sisältä, mihin tiedosto _JasentietokannanHallinta-1.0-SNAPSHOT.jar_ on tallennettu (esim. Downloads). Käynnistä ohjelma komennolla 
 

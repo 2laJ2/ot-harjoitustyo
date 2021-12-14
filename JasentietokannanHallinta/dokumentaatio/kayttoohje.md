@@ -38,13 +38,15 @@ Vaihtoehtoisesti luomisnäkymästä on mahdollista siirtyä takaisin kirjautumis
 
 Onnistuneen kirjautumisen jälkeen siirrytään sovelluksen varsinaiseen päänäkymään.
 
-Näkymässä on mahdollista luoda uusia jäsentietoja kirjoittamalla syötekenttiin jäsentiedot ja klikkamaalla painiketta _create new member_. Jos uuden jäsenen luominen onnistuu, näkymän yläosaan ilmestyy vihreä teksti _new member created_.
+Näkymässä on mahdollista luoda uusia jäsentietoja kirjoittamalla syötekenttiin jäsentiedot ja klikkamaalla painiketta _create new member_. 
 
 <img src="https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/kuvat/kayttoohje3.png" width="450">
 
-Luotu jäsentieto on mahdollista etsiä kirjoittamalla syötekenttään jäsenen nimi ja klikkaamalla painiketta _find_. Jos annetulla nimellä löytyy olemassaoleva jäsen, jäsentiedot tulevat näkyviin näkymän syötekenttin.
+Jos uuden jäsenen luominen onnistuu, näkymän yläosaan ilmestyy vihreä teksti _new member created_.
 
 <img src="https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/kuvat/kayttoohje4.png" width="450">
+
+Luotu jäsentieto on mahdollista etsiä kirjoittamalla syötekenttään jäsenen nimi ja klikkaamalla painiketta _find_. Jos annetulla nimellä löytyy olemassaoleva jäsen, jäsentiedot tulevat näkyviin näkymän syötekenttin.
 
 Jos annetulla nimellä ei löydy jäsentietoja, näkymän yläosaan ilmestyy punainen teksti _member not found_.
 

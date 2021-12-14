@@ -59,6 +59,8 @@ Ohjelma toteuttaa seuraavat määrittelydokumentissa kuvaillut toiminnot:
 
 [Viikko 6](https://github.com/2laJ2/ot-harjoitustyo/releases/tag/viikko6)
 
+[Viikko 5](https://github.com/2laJ2/ot-harjoitustyo/releases/tag/viikko5)
+
 ## Komentorivitoiminnot
 
 ### Ohjelman käynnistys

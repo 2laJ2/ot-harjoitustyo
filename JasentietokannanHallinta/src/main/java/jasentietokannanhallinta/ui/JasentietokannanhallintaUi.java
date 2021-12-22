@@ -1,25 +1,18 @@
 package jasentietokannanhallinta.ui;
 
-import java.util.*;
 import jasentietokannanhallinta.domain.JasentiedotService;
 import jasentietokannanhallinta.domain.Jasentiedot;
 import jasentietokannanhallinta.dao.FileJasentiedotDao;
 import jasentietokannanhallinta.dao.FileUserDao;
+import java.io.FileInputStream;
+import java.util.Properties;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -43,9 +36,15 @@ public class JasentietokannanhallintaUi extends Application {
      * Ohjelman käynnistyessä tehtävät toimenpiteet
      */
     @Override
-    public void init() {
-        FileUserDao userDao = new FileUserDao("users.txt");
-        FileJasentiedotDao todoDao = new FileJasentiedotDao("jasentiedotList.txt", userDao);
+    public void init() throws Exception {
+        Properties properties = new Properties();
+        properties.load(new FileInputStream("config.properties"));
+        
+        String userFile = properties.getProperty("userFile");
+        String jasentiedotFile = properties.getProperty("jasentiedotFile");
+        
+        FileUserDao userDao = new FileUserDao(userFile);
+        FileJasentiedotDao todoDao = new FileJasentiedotDao(jasentiedotFile, userDao);
         jasentiedotService = new JasentiedotService(todoDao, userDao);
     }
     

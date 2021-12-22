@@ -4,7 +4,7 @@
 
 Ohjelman rakenne on kolmitasoinen kerrosarkkitehtuuri. Koodin pakkausrakenne on seuraava:
 
-<img src="https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/kuvat/pakkausrakenne.png" width="500">
+<img src="https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/kuvat/pakkausrakenne.png" width="180">
 
 Pakkaus _jasentietokannanhallinta.ui_ sisältää JavaFX:llä toteutetun käyttöliittymän _jasentietokannanhallinta.domain_ sovelluslogiikan ja _jasentietokannanhallinta.dao_ tietojen pysyväistallennuksesta vastaavan koodin.
 
@@ -25,7 +25,7 @@ Sovelluksen loogisen datamallin muodostavat [User](https://github.com/2laJ2/ot-h
 
 <img src="https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/kuvat/looginendatamalli.png" width="400">
 
-Toiminnallisista kokonaisuuksista vastaa luokan _JasentiedotService_ ainoa olio. Luokassa on kaikille käyttöliittymän toiminnoille oma metodi.
+Toiminnallisista kokonaisuuksista vastaa luokan [JasentiedotService](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/src/main/java/jasentietokannanhallinta/domain/JasentiedotService.java) ainoa olio. Luokassa on kaikille käyttöliittymän toiminnoille oma metodi.
 Metodeja ovat esim.
 - boolean login(String username)
 - boolean createUser(String username, String name, String password)
@@ -36,7 +36,7 @@ Metodeja ovat esim.
 - Jasentiedot findMemberByName(String name)
 - String getFoundMemberAddressByName(String name)
 
-_JasentiedotService_ pääsee käsiksi käyttäjiin ja jasentietoihin tietojen tallennuksesta vastaavien, pakkauksessa _jasentietojenhallinta.dao_ sijaitsevien rajapintojen _JasentiedotDao_ ja _UserDao_ toteuttavien luokkien kautta. 
+_JasentiedotService_ pääsee käsiksi käyttäjiin ja jasentietoihin tietojen tallennuksesta vastaavien, pakkauksessa _jasentietojenhallinta.dao_ sijaitsevien rajapintojen _JasentiedotDao_ ja _UserDao_ toteuttavien luokkien kautta. Luokkien toteutus [injektoidaan](https://en.wikipedia.org/wiki/Dependency_injection)sovelluslogiikalle konstruktorikutsun yhteydessä.
 
 JasentiedotServicen ja ohjelman muiden osien suhdetta kuvaa seuraava luokka/pakkauskaavio:
 
@@ -44,13 +44,17 @@ JasentiedotServicen ja ohjelman muiden osien suhdetta kuvaa seuraava luokka/pakk
 
 ## Tietojen pysyväistallennus
 
-Luokat on toteutettu [Data Access Object](https://en.wikipedia.org/wiki/Data_access_object) -suunnittelumallin mukaisesti ja ne voi tarpeen vaatiessa korvata uusilla toteutuksilla, jos sovelluksen datan tallennustapa vaihdetaan. Luokat on eristetty rajapintojen JasentiedotDao ja UserDao taakse, eikä sovelluslogiikka käytä niitä suoraan.
+Pakkauksen _jasentietokannanhallinta.dao_ luokat _FileJasentiedotDao_ ja _FileUserDao_ huolehtivat tietojen tallettamisesta tiedostoihin.
+
+Luokat on toteutettu [Data Access Object](https://en.wikipedia.org/wiki/Data_access_object) -suunnittelumallin mukaisesti ja ne voi tarpeen vaatiessa korvata uusilla toteutuksilla, jos sovelluksen datan tallennustapa vaihdetaan. Luokat on eristetty rajapintojen _JasentiedotDao_ ja _UserDao_ taakse, eikä sovelluslogiikka käytä niitä suoraan.
 
 Sovelluslogiikkaa testattaessa tätä hyödynnetään käyttämällä testeissä tiedostoon tallentavien DAO-olioiden tilalla keskusmuistiin tallentavia toteutuksia.
 
 ### Tiedostot
 
 Sovellus tallettaa käyttäjien ja jäsentietojen tiedot erillisiin tiedostoihin.
+
+Sovelluksen juureen sijoitettu [konfiguraatiotiedosto](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/kayttoohje.md#konfiguraatiotiedosto) [config.properties](https://github.com/2laJ2/ot-harjoitustyo/tree/master/config.properties) määrittelee tiedostojen nimet.
 
 Sovellus tallentaa käyttäjät seuraavassa muodossa
 
@@ -78,25 +82,25 @@ Seuraavassa kuvataan sovelluksen toimintalogiikka muutaman päätoiminnallisuude
 
 Kun kirjautumisnäkymässä on kirjoitettu syötekenttiin käyttäjätunnus ja salasana ja klikattu painiketta _loginButton_, sovelluksen kontrolli etenee seuraavalla tavalla:
 
-<img src="https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/kuvat/sekvenssikaavioKirjaudu.png" width="500">
+<img src="https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/kuvat/sekvenssikaavioKirjaudu.png" width="750">
 
-Painikkeen painamiseen reagoiva tapahtumankäsittelijä kutsuu sovelluslogiikan jasentiedotService metodia login antaen parametrina kirjautuneen käyttäjätunnuksen. Sovelluslogiikka selvittää UserDaon avulla, onko käyttäjätunnus olemassa. Jos on, sovelluslogiikka tarkistaa, vastaako kirjautumisen yhteydessä annettu salasana käyttäjän oikeaa salasanaa. Jos salasana on oikea, kirjautuminen onnistuu ja käyttöliittymä vaihtaa näkymäksi _mainScenen_ eli sovelluksen varsinaisen päänäkymän.
+Painikkeen painamiseen reagoiva [tapahtumankäsittelijä](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/src/main/java/jasentietokannanhallinta/ui/JasentietokannanhallintaUi.java#L81) kutsuu sovelluslogiikan jasentiedotService metodia [login](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/src/main/java/jasentietokannanhallinta/domain/JasentiedotService.java#L44) antaen parametrina kirjautuneen käyttäjätunnuksen. Sovelluslogiikka selvittää UserDaon avulla, onko käyttäjätunnus olemassa. Jos on, sovelluslogiikka tarkistaa, vastaako kirjautumisen yhteydessä annettu salasana käyttäjän oikeaa salasanaa. Jos salasana on oikea, kirjautuminen onnistuu ja käyttöliittymä vaihtaa näkymäksi _mainScenen_ eli sovelluksen varsinaisen päänäkymän.
 
 #### uuden käyttäjän luominen
 
 Kun uuden käyttäjän luomisnäkymässä on ensin syötetty käyttäjätunnus, joka ei vielä ole käytössä sekä nimi ja salasana ja lopuksi klikattu painiketta _createNewUserButton_, sovelluksen kontrolli etenee seuraavalla tavalla:
 
-<img src="https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/kuvat/sekvenssikaavioUusiKayttaja.png" width="500">
+<img src="https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/kuvat/sekvenssikaavioUusiKayttaja.png" width="750">
 
-Tapahtumankäsittelijä kutsuu sovelluslogiikan metodia createUser antaen parametrina luotavan käyttäjän tiedot. Sovelluslogiikka selvittää UserDaon avulla, onko käyttäjätunnus olemassa. Jos ei ole, on mahdollista luoda uusi käyttäjä annetulla käyttäjätunnuksella. Sovelluslogiikka luo User-olion ja tallentaa sen kutsumalla _userDao_:n metodia _create_. Tämän jälkeen käyttöliittymä vaihtaa näkymäksi _loginScenen_ eli kirjautumisnäkymän.
+[Tapahtumankäsittelijä](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/src/main/java/jasentietokannanhallinta/ui/JasentietokannanhallintaUi.java#L144) kutsuu sovelluslogiikan metodia [createUser](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/src/main/java/jasentietokannanhallinta/domain/JasentiedotService.java#L74) antaen parametrina luotavan käyttäjän tiedot. Sovelluslogiikka selvittää _userDao_:n avulla, onko käyttäjätunnus olemassa. Jos ei ole, on mahdollista luoda uusi käyttäjä annetulla käyttäjätunnuksella. Sovelluslogiikka luo _User_-olion ja tallentaa sen kutsumalla _userDao_:n metodia _create_. Tämän jälkeen käyttöliittymä vaihtaa näkymäksi _loginScenen_ eli kirjautumisnäkymän.
 
 #### jasentiedon luominen
 
 Sovelluksen varsinaisen päänäkymän _createMemberButton_-painikkeen klikkaaminen luo uuden jasentiedon. Sovelluksen kontrolli etenee seuraavalla tavalla:
 
-<img src="https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/kuvat/sekvenssikaavioUusiJasen.png" width="500">
+<img src="https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/kuvat/sekvenssikaavioUusiJasen.png" width="750">
 
-Tapahtumakäsittelijä kutsuu sovelluslogiikan metodia _createNewMember_ antaen parametrina luotavan jäsenen tiedot. Sovelluslogiikka luo uuden _Jasentiedot_-olion ja tallentaa sen kutsumalla _jasentiedotDao_:n metodia _create_. 
+[Tapahtumakäsittelijä](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/src/main/java/jasentietokannanhallinta/ui/JasentietokannanhallintaUi.java#L255) kutsuu sovelluslogiikan metodia [createNewMember](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/src/main/java/jasentietokannanhallinta/domain/JasentiedotService.java#L91) antaen parametrina luotavan jäsenen tiedot. Sovelluslogiikka luo uuden _Jasentiedot_-olion ja tallentaa sen kutsumalla _jasentiedotDao_:n metodia _create_. 
 
 #### muut toiminnallisuudet
 
@@ -110,11 +114,11 @@ Graafinen käyttöliittymä on toteutettu määrittelemällä lähes koko käytt
 
 ### DAO-luokat
 
-FileDao-toteutuksiin on jäänyt paljon toisteista ohjelmakoodia, kummassakin on mm. hyvin samankaltainen logiikka tiedoston lukemiseen ja tiedoston kirjoittamiseen. Tämä koodi olisi syytä erottaa omaksi luokakseen. Samalla olisi syytä etsiä ratkaisu jäsentiedoston käytettävyysongelmaan uudella ohjelman käynnistyskerralla. Kenties Dao-toteutusten automaattiset testit vähentäisivät refaktorointiin liittyviä riskejä.
+FileDao-toteutuksiin on jäänyt paljon toisteista ohjelmakoodia, kummassakin on mm. hyvin samankaltainen logiikka tiedoston lukemiseen ja tiedoston kirjoittamiseen. Tämä koodi olisi syytä erottaa omaksi luokakseen. Kenties Dao-toteutusten automaattiset testit vähentäisivät refaktorointiin liittyviä riskejä.
 
 ### tietoturva
 
-Sovelluksen tietoturva on nykymittapuulla olematon. Salasanan pystyy selvittämään kokeilemalla eikä ohjelma ole turvallinen verkkoon liitettynä. Sovellus toimii parhaiten pienimuotoisena, arkaluontoisia henkilötietoja sisältämättömänä sähköisenä osoitekirjana koneella, joka ei ole liitettynä verkkoon ja johon on rajoitettu pääsy. Sovelluksen ongelma on, että kun sovellus sammutetaan ja käynnistetään uudelleen (esim. sähkökatkos, tietokoneen käyttö muuhun tarkoitukseen, tietokoneen sammuttaminen), sovellus löytää tiedostoon tallennetut käyttäjät, mutta ei jäsentietoja. Kaikki jäsentiedot tulee luoda uudelleen, jolloin sovellus kirjoittaa jasentiedoston uudelleen. Tämä on olennainen bugi, johon tulee löytää ratkaisu. Erillisen varmuuskopion säännöllinen luominen voisi olla tarpeen.
+Sovelluksen tietoturva on nykymittapuulla olematon. Salasanan pystyy selvittämään kokeilemalla eikä ohjelma ole turvallinen verkkoon liitettynä. Sovellus toimii parhaiten pienimuotoisena, arkaluontoisia henkilötietoja sisältämättömänä sähköisenä osoitekirjana koneella, joka ei ole liitettynä verkkoon ja johon on rajoitettu pääsy.
 
 ### laajennettavuus
 

@@ -14,7 +14,7 @@ public class FileJasentiedotDao {
     /**
      * 
      */
-    public List<Jasentiedot> jasentiedotList;
+    private List<Jasentiedot> jasentiedotList;
     private String file;
     private FileUserDao users;
     

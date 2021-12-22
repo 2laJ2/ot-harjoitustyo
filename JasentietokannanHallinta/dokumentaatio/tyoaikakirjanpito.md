@@ -53,4 +53,8 @@
 |        |        | checkstyle-tarkistus |
 |        | 1      | tutustuminen luokkakaavioiden piirto-ohjelmaan sivulla https://app.diagrams.net/ ja käyttöliittymäluonnoksen päivittäminen |
 | 22.12. | 3      | pakkausrakenne-, looginen datamalli-, pakkauskaavio- ja kolmen sekvenssikaavioluonnoksen päivittäminen drawio:n avulla |
-| yht.	 | 68     | |
+|        | 3.5    | users.txt ja jasentiedotList.txt tiedostojen nimet määrittelevän konfiguraatiotiedoston lisääminen |
+|        |        | konfiguraatiotiedostoon vaadittavien java.io.FileInputStream ja java.util.Properties käyttöönotto |
+|        |        | jäsentietojen pysyvässä tallennuksessa olleen bugin korjaaminen |
+|        |        | dokumentaation päivitystä |
+| yht.	 | 71.5   | |

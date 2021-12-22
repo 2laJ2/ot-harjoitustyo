@@ -3,8 +3,6 @@ package jasentietokannanhallinta.domain;
 import java.util.*;
 import jasentietokannanhallinta.dao.FileJasentiedotDao;
 import jasentietokannanhallinta.dao.FileUserDao;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Sovelluslogiikasta vastaava luokka

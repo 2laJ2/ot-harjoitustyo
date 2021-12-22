@@ -2,10 +2,15 @@
 
 Lataa tiedosto [JasentietokannanHallinta-1.0-SNAPSHOT.jar](https://github.com/2laJ2/ot-harjoitustyo/releases).
 
-## konfigurointi
+## Konfigurointi
 
-Ohjelma olettaa, että sen käynnistyshakemistossa on käyttäjät ja jäsentiedot tallettavat tiedostot _users.txt_ ja _jasentiedotList.txt_.
+Ohjelma olettaa, että sen käynnistyshakemistossa on konfiguraatiotiedosto _config.properties_, joka määrittelee käyttäjät ja jäsentiedot tallettavien tiedostojen nimet. Tiedoston muoto on seuraava
 
+```
+userFile = users.txt
+jasentiedotFile = jasentiedotList.txt
+
+```
 ## Ohjelman käynnistäminen
 
 Ohjelma käynnistetään komennolla

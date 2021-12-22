@@ -47,4 +47,10 @@
 |        |        | dokumentaation päivitys |
 |        |        | koodin laadun tarkastelu, havaintojen kirjaaminen dokumentaatioon |
 |        | 1      | uuden jarin lisäys, GitHub Releasen tekeminen |
-| yht.	 | 60     | |
+| 20.12. | 4      | testauksen päivittäminen; uuden testin FileUserDaoTest lisäys, tarpeettomien testien poisto |
+|        |        | käyttämättömien metodien poisto, toisteisen koodin poistaminen testiluokista |
+|        |        | testikattavuus domain (JasentiedotService, Jasentiedot, User) 100%, dao (FileUserDao 94%, FileJasentiedotDao 98%) 97%; no missed branches |
+|        |        | checkstyle-tarkistus |
+|        | 1      | tutustuminen luokkakaavioiden piirto-ohjelmaan sivulla https://app.diagrams.net/ ja käyttöliittymäluonnoksen päivittäminen |
+| 22.12. | 3      | pakkausrakenne-, looginen datamalli-, pakkauskaavio- ja kolmen sekvenssikaavioluonnoksen päivittäminen drawio:n avulla |
+| yht.	 | 68     | |

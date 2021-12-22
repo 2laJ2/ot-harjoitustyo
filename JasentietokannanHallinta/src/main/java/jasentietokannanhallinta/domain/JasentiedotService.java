@@ -80,15 +80,15 @@ public class JasentiedotService {
      * @return true, jos käyttäjätunnuksen luominen on onnistunut, muuten false
      */
     public boolean createUser(String username, String name, String password) {
-        User user = new User(username, name, password);
-        if (userDao.findUsername(username) != null) {
-            return false;
+        if (userDao.findUsername(username) == null) {
+            User user = new User(username, name, password);
+            userDao.create(user);
+            return true;
         }
-        userDao.create(user);
-        return true;
+        return false;
         
     }
-    
+        
     /**
      * uuden jäsenen luominen
      * @param name jäsenen nimi

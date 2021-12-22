@@ -1,68 +1,51 @@
 package jasentietokannanhallinta;
 
-import jasentietokannanhallinta.domain.Jasentiedot;
-import jasentietokannanhallinta.domain.JasentiedotService;
 import jasentietokannanhallinta.domain.User;
-//import org.junit.After;
-//import org.junit.AfterClass;
 import org.junit.Before;
-//import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class UserTest {
     
-    User user;
+    User u1;
+    User u2;
     
     @Before
     public void setUp() {
+        u1 = new User("username", "nameOf", "password");
+        u2 = new User("username", "nameOf", "password");
+        
     }
     
     @Test
-    public void equalWhenSameUsername() {
-        User u1 = new User("username", "nameOf", "password");
-        User u2 = new User("username", "nameOf", "password");
+    public void equalWhenSameUsernameAndNameAndPassword() {
         assertTrue(u1.getUsername().equals(u2.getUsername())&&
-                   u1.getName().equals(u2.getName()));
+                   u1.getName().equals(u2.getName())&&
+                   u1.getPassword().equals(u2.getPassword()));
     }
     
     @Test
     public void nonEqualWhenDifferentUsername() {
-        User u1 = new User("username", "nameOf", "password");
-        User u2 = new User("notsame", "nameOf", "password");
-        assertTrue(!u1.getUsername().equals(u2.getUsername())&&
-                   u1.getName().equals(u2.getName()));
+        u2.setUsername("notsame");
+        assertTrue(!u1.getUsername().equals(u2.getUsername()));
     }
     
     @Test
     public void nonEqualWhenDifferentName() {
-        User u1 = new User("username", "nameOf", "password");
-        User u2 = new User("username", "notsame", "password");
-        assertTrue(u1.getUsername().equals(u2.getUsername())&&
-                   !u1.getName().equals(u2.getName()));
-    }
-        
-    @Test
-    public void nonEqualWhenDifferentType() {
-        User u = new User("username", "nameOf", "password");
-        Object o = new Object();
-        assertTrue(!o.equals(u));
-    }
-    
-    @Test
-    public void nonEqualWhenDifferentNameSet(){
-        User u1 = new User("username", "nameOf", "password");
-        User u2 = new User("username", "nameOf", "password");
         u2.setName("notsame");
         assertTrue(!u1.getName().equals(u2.getName()));
     }
     
     @Test
-    public void nonEqualWhenDifferentUsernameSet(){
-        User u1 = new User("username", "nameOf", "password");
-        User u2 = new User("username", "nameOf", "password");
-        u2.setUsername("notsame");
-        assertTrue(!u1.getUsername().equals(u2.getUsername()));
+    public void nonEqualWhenDifferentPassword() {
+        u2.setPassword("notsame");
+        assertTrue(!u1.getPassword().equals(u2.getPassword()));
+    }
+    
+    @Test
+    public void nonEqualWhenDifferentType() {
+        Object o = new Object();
+        assertTrue(!o.equals(u1));
     }
 
 }

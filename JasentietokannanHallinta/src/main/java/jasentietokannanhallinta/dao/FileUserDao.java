@@ -73,13 +73,4 @@ public class FileUserDao {
         save();
     }
     
-    /**
-     * käyttäjän poistaminen käyttäjätiedostosta
-     * @param user
-     */
-    public void removeUser(User user) {
-        users.remove(user);
-        save();
-    }
-    
 }

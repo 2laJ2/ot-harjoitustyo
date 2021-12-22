@@ -4,7 +4,7 @@ Lataa tiedosto [JasentietokannanHallinta-1.0-SNAPSHOT.jar](https://github.com/2l
 
 ## konfigurointi
 
-Ohjelma olettaa, että sen käynnistyshakemistossa on käyytäjät ja jäsentiedot tallettavat tiedostot _users.txt_ ja _jasentiedotList.txt_.
+Ohjelma olettaa, että sen käynnistyshakemistossa on käyttäjät ja jäsentiedot tallettavat tiedostot _users.txt_ ja _jasentiedotList.txt_.
 
 ## Ohjelman käynnistäminen
 
@@ -50,7 +50,7 @@ Luotu jäsentieto on mahdollista etsiä kirjoittamalla syötekenttään jäsenen
 
 Jos annetulla nimellä ei löydy jäsentietoja, näkymän yläosaan ilmestyy punainen teksti _member not found_.
 
-Luotuja jäsentietoja on mahdollista muokata. Tämä tapahtuu kirjoittamalla jäsenen nimi syötekenttään ja klikkaamalla painiketta _find_, minkä jälkeen syötekenttiin näkyviin tulevia osoite- ja puhelinnumerotietoja on mahdollista muokata ja tämän jälkeen tallentaa klikkaamalla painiketta -edit_.
+Luotuja jäsentietoja on mahdollista muokata. Tämä tapahtuu kirjoittamalla jäsenen nimi syötekenttään ja klikkaamalla painiketta _find_, minkä jälkeen syötekenttiin näkyviin tulevia osoite- ja puhelinnumerotietoja on mahdollista muokata ja tämän jälkeen tallentaa klikkaamalla painiketta _edit_.
 
 <img src="https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/kuvat/kayttoohje5.png" width="450">
 

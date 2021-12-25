@@ -4,7 +4,7 @@ Sovelluksen avulla käyttäjän on mahdollista käyttää ja hallita urheiluseur
 
 ## Huomio JavaFX konfiguroinnin aiheuttamista ongelmista
 
-JavaFx konfigurointiongelmien selvittäminen vei huomattavan paljon aikaa. Tästä syystä sovelluksen ensimmäinen versio mukaili referenssisovellusta. Sovellusta päivitettäessä mukailua on vähenetty sitä mukaa, kuin vaatimusmäärittelyn luettelemia toiminnallisuuksia on lisätty. Sovellus on kuitenkin nykyisessä muodossaan liian suppea, jotta sitä voisi hyödyntää täysipainoisesti alkuperäiseen tarkoitukseen. Sovelluksen graafisen käyttöliittymän koodia kannattaisi selkiyttää FXML-määrittelyllä ja jäsentietojen tallennustapa kannattaisi myöhempiä jatkokehitysideoita silmälläpitäen muuttaa esim. MySQL-tietokannaksi. Tämä poistaisi monia sovelluksen käytettävyyteen vaikuttavia ongelmia, kuten esim. jäsentietojen pysyvän tallennuksen sovelluksen sulkemisen varalta. FXML-määrittelyyn ja MySQL-tietokantaan perehtyminen ja käyttönottaminen vie huomattavan paljon aikaa ja vaatisi käytännössä sovelluksen rakentamista uudelleen lähes alusta alkaen.   
+JavaFx konfigurointiongelmien selvittäminen vei huomattavan paljon aikaa. Tästä syystä sovelluksen ensimmäinen versio mukaili referenssisovellusta. Sovellusta päivitettäessä mukailua vähenettiin sitä mukaa, kuin vaatimusmäärittelyn luettelemia toiminnallisuuksia lisättiin. Sovellus on nykyisessä muodossaan liian suppea, jotta sitä voisi hyödyntää täysipainoisesti alkuperäiseen tarkoitukseen. Sovelluksen graafisen käyttöliittymän koodia kannattaisi selkiyttää FXML-määrittelyllä ja jäsentietojen tallennustapa kannattaisi myöhempiä jatkokehitysideoita silmälläpitäen muuttaa esim. MySQL-tietokannaksi. FXML-määrittelyyn ja MySQL-tietokantaan perehtyminen ja käyttönottaminen vie huomattavan paljon aikaa ja vaatisi käytännössä sovelluksen rakentamista uudelleen lähes alusta alkaen.   
 
 ## Ohjelman toimivuus
 
@@ -27,7 +27,6 @@ Ohjelma toteuttaa seuraavat määrittelydokumentissa kuvaillut toiminnot:
 - (pää)käyttäjä näkee seuran jäsentietokantavalikon / varsinaisen päänäkymän
   - (pää)käyttäjä voi valita haluamansa toiminnon
   - jäsentietojen haku tietokannasta nimellä, jolloin järjestelmä näyttää jäsenen nimi-, osoite- ja puhelinnumerotiedot 
-    - järjestelmä löytää samalla käyttökerralla järjestelmään tallennetun jäsenen annetun nimen perusteella  
   - uuden jäsenen luominen 
     - jäsenestä tallennetaan jäsentietoihin nimi, osoite ja puhelinnumero
     - jäsenen nimen tulee olla uniikki ja pituudeltaan vähintään 3 merkkiä, osoitteen tulee olla vähintään 3 merkkiä ja puhelinnumeron 8 merkkiä

@@ -20,7 +20,7 @@ Sovelluslogiikkakerroksen luokille [User](https://github.com/2laJ2/ot-harjoitust
 
 ### DAO-luokat
 
-DAO-luokkaa eli pakkauksen [jasentietokannanhallinta.dao]() testataan _JasentiedotServiceTest_:in lisäksi testillä
+DAO-luokkaa eli pakkauksen [jasentietokannanhallinta.dao](https://github.com/2laJ2/ot-harjoitustyo/tree/master/JasentietokannanHallinta/src/main/java/jasentietokannanhallinta/dao) testataan _JasentiedotServiceTest_:in lisäksi testillä
 
 [FileUserDaoTest.java](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/src/test/java/jasentietokannanhallinta/FileUserDaoTest.java) 
 

@@ -3,7 +3,7 @@ package jasentietokannanhallinta.ui;
 import jasentietokannanhallinta.ui.JasentietokannanhallintaUi;
 
 /**
- * Ohjelman graafisen käyttöliittymän käynnistävä pääluokka
+ * ohjelman graafisen käyttöliittymän käynnistävä pääluokka
  */
 public class Main  {
     

@@ -1,7 +1,7 @@
 package jasentietokannanhallinta.domain;
 
 /**
- * Käyttäjää kuvaava luokka
+ * käyttäjää kuvaava luokka
  */
 public class User {
  
@@ -10,7 +10,7 @@ public class User {
     private String password;
     
     /**
-     * Käyttäjää kuvaavan luokan konstruktori
+     * käyttäjää kuvaavan luokan konstruktori
      * @param username
      * @param name
      * @param password
@@ -54,7 +54,7 @@ public class User {
     }
     
     /**
-     *
+     * @param password 
      */
     public void setPassword(String password) {
         this.password = password;

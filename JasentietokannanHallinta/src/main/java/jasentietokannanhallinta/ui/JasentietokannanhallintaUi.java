@@ -7,6 +7,7 @@ import jasentietokannanhallinta.dao.FileUserDao;
 import java.io.FileInputStream;
 import java.util.Properties;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -33,7 +34,8 @@ public class JasentietokannanhallintaUi extends Application {
     private Label menuLabel = new Label();
     
     /**
-     * Ohjelman käynnistyessä tehtävät toimenpiteet
+     * ohjelman käynnistyessä tehtävät toimenpiteet
+     * @throws java.lang.Exception
      */
     @Override
     public void init() throws Exception {
@@ -42,14 +44,15 @@ public class JasentietokannanhallintaUi extends Application {
         
         String userFile = properties.getProperty("userFile");
         String jasentiedotFile = properties.getProperty("jasentiedotFile");
+        String removedJasentiedotFile = properties.getProperty("removedJasentiedotFile");
         
         FileUserDao userDao = new FileUserDao(userFile);
-        FileJasentiedotDao todoDao = new FileJasentiedotDao(jasentiedotFile, userDao);
+        FileJasentiedotDao todoDao = new FileJasentiedotDao(jasentiedotFile, userDao, removedJasentiedotFile);
         jasentiedotService = new JasentiedotService(todoDao, userDao);
     }
     
     /**
-     * Graafisen käyttöliittymän sisältävä osio
+     * graafisen käyttöliittymän sisältävä osio
      * @param primaryStage
      */
     @Override
@@ -277,36 +280,33 @@ public class JasentietokannanhallintaUi extends Application {
         
         Button editMemberButton = new Button("edit");
         
-        editMemberButton.setOnAction(e-> {
+        editMemberButton.setOnAction((ActionEvent e)-> {
             memberCreationMessage.setText("");   
+            
             String findmembername = findInput.getText();
             Jasentiedot jasentiedot = jasentiedotService.findMemberByName(findmembername);
-            Jasentiedot uusi = jasentiedot;
-            int idUusi = uusi.getId();
+            Jasentiedot newJasentiedot = jasentiedot;
+            int idOld = jasentiedot.getId();
             
             String newname = findMemberNameInput.getText();
             boolean exists = jasentiedotService.doesMemberNameExist(newname);
             Jasentiedot check = jasentiedotService.findMemberByName(newname);
             int idCheck = check.getId();
             
-            if (exists == false || idUusi == idCheck) {
-                uusi.setName(newname);
-                uusi.setAddress(findMemberAddressInput.getText());
-                uusi.setPhone(findMemberPhoneInput.getText());
-
+             if (exists == false || idOld == idCheck) {
+                newJasentiedot.setName(newname);
+                newJasentiedot.setAddress(findMemberAddressInput.getText());
+                newJasentiedot.setPhone(findMemberPhoneInput.getText());
+                
+                jasentiedotService.saveChanges(newJasentiedot, jasentiedot);
+                
                 memberNotFoundLabel.setText("member information changed");
                 memberNotFoundLabel.setTextFill(Color.GREEN);
 
                 findMemberNameInput.setText("");
                 findMemberAddressInput.setText("");
                 findMemberPhoneInput.setText("");
-
-                jasentiedotService.jasentiedotList.remove(jasentiedot);
-                jasentiedotService.jasentiedotList.add(uusi);
-            } else {
-                memberNotFoundLabel.setText("membername exists, choose another name and press create");
-                memberNotFoundLabel.setTextFill(Color.RED);
-            }
+            } 
         });
 
         buttonPane.getChildren().addAll(createMemberButton, editMemberButton);

@@ -1,7 +1,7 @@
 package jasentietokannanhallinta.domain;
 
 /**
- * Jäsentä kuvaava luokka
+ * jäsentä kuvaava luokka
  */
 public class Jasentiedot {
     
@@ -12,7 +12,7 @@ public class Jasentiedot {
     private User user;
     
     /**
-     * Jäsentä kuvaavan luokan konstruktori
+     * jäsentä kuvaavan luokan konstruktori
      * @param id
      * @param name
      * @param address

@@ -46,7 +46,7 @@ JasentiedotServicen ja ohjelman muiden osien suhdetta kuvaa seuraava luokka/pakk
 
 Pakkauksen _jasentietokannanhallinta.dao_ luokat _FileJasentiedotDao_ ja _FileUserDao_ huolehtivat tietojen tallettamisesta tiedostoihin.
 
-Luokat on toteutettu [Data Access Object](https://en.wikipedia.org/wiki/Data_access_object) -suunnittelumallin mukaisesti ja ne voi tarpeen vaatiessa korvata uusilla toteutuksilla, jos sovelluksen datan tallennustapa vaihdetaan. Luokat on eristetty rajapintojen _JasentiedotDao_ ja _UserDao_ taakse, eikä sovelluslogiikka käytä niitä suoraan.
+Luokat on toteutettu [Data Access Object](https://en.wikipedia.org/wiki/Data_access_object) -suunnittelumallin mukaisesti ja ne voi tarpeen vaatiessa korvata uusilla toteutuksilla, jos sovelluksen datan tallennustapa vaihdetaan. Luokat on eristetty rajapintojen _JasentiedotDao_ ja _UserDao_ taakse, eikä sovelluslogiikka käytä niitä suoraan
 
 Sovelluslogiikkaa testattaessa tätä hyödynnetään käyttämällä testeissä tiedostoon tallentavien DAO-olioiden tilalla keskusmuistiin tallentavia toteutuksia.
 
@@ -72,7 +72,7 @@ Jäsentiedot tallentavan tiedoston muoto on seuraava
 2;Sini Siipi;Kukkakuja 3,50500 Niittykumpu;0407894365;kkala
 
 ```
-Kentät on erotettu toisistaan puolipisteellä. Ensimmäisenä on jäsenen tunnistenumero eli _id_, toisena nimi, kolmantena osoite, neljäntenä puhelinnumero ja viimeisenä jäsentiedon tallentaneen käyttäjän käyttäjätunnus.
+Kentät on erotettu toisistaan puolipisteellä. Ensimmäisenä on jäsenen tunnistenumero (voidaan käyttää jäsennumerona) eli _id_, toisena nimi, kolmantena osoite, neljäntenä puhelinnumero ja viimeisenä jäsentiedon tallentaneen käyttäjän käyttäjätunnus.
 
 ### Päätoiminnallisuudet
 
@@ -84,7 +84,7 @@ Kun kirjautumisnäkymässä on kirjoitettu syötekenttiin käyttäjätunnus ja s
 
 <img src="https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/kuvat/sekvenssikaavioKirjaudu.png" width="750">
 
-Painikkeen painamiseen reagoiva [tapahtumankäsittelijä](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/src/main/java/jasentietokannanhallinta/ui/JasentietokannanhallintaUi.java#L81) kutsuu sovelluslogiikan jasentiedotService metodia [login](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/src/main/java/jasentietokannanhallinta/domain/JasentiedotService.java#L44) antaen parametrina kirjautuneen käyttäjätunnuksen. Sovelluslogiikka selvittää UserDaon avulla, onko käyttäjätunnus olemassa. Jos on, sovelluslogiikka tarkistaa, vastaako kirjautumisen yhteydessä annettu salasana käyttäjän oikeaa salasanaa. Jos salasana on oikea, kirjautuminen onnistuu ja käyttöliittymä vaihtaa näkymäksi _mainScenen_ eli sovelluksen varsinaisen päänäkymän.
+Painikkeen painamiseen reagoiva [tapahtumankäsittelijä](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/src/main/java/jasentietokannanhallinta/ui/JasentietokannanhallintaUi.java#L84) kutsuu sovelluslogiikan jasentiedotService metodia [login](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/src/main/java/jasentietokannanhallinta/domain/JasentiedotService.java#L44) antaen parametrina kirjautuneen käyttäjätunnuksen. Sovelluslogiikka selvittää UserDaon avulla, onko käyttäjätunnus olemassa. Jos on, sovelluslogiikka tarkistaa, vastaako kirjautumisen yhteydessä annettu salasana käyttäjän oikeaa salasanaa. Jos salasana on oikea, kirjautuminen onnistuu ja käyttöliittymä vaihtaa näkymäksi _mainScenen_ eli sovelluksen varsinaisen päänäkymän.
 
 #### uuden käyttäjän luominen
 
@@ -92,7 +92,7 @@ Kun uuden käyttäjän luomisnäkymässä on ensin syötetty käyttäjätunnus, 
 
 <img src="https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/kuvat/sekvenssikaavioUusiKayttaja.png" width="750">
 
-[Tapahtumankäsittelijä](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/src/main/java/jasentietokannanhallinta/ui/JasentietokannanhallintaUi.java#L144) kutsuu sovelluslogiikan metodia [createUser](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/src/main/java/jasentietokannanhallinta/domain/JasentiedotService.java#L74) antaen parametrina luotavan käyttäjän tiedot. Sovelluslogiikka selvittää _userDao_:n avulla, onko käyttäjätunnus olemassa. Jos ei ole, on mahdollista luoda uusi käyttäjä annetulla käyttäjätunnuksella. Sovelluslogiikka luo _User_-olion ja tallentaa sen kutsumalla _userDao_:n metodia _create_. Tämän jälkeen käyttöliittymä vaihtaa näkymäksi _loginScenen_ eli kirjautumisnäkymän.
+[Tapahtumankäsittelijä](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/src/main/java/jasentietokannanhallinta/ui/JasentietokannanhallintaUi.java#L147) kutsuu sovelluslogiikan metodia [createUser](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/src/main/java/jasentietokannanhallinta/domain/JasentiedotService.java#L74) antaen parametrina luotavan käyttäjän tiedot. Sovelluslogiikka selvittää _userDao_:n avulla, onko käyttäjätunnus olemassa. Jos ei ole, on mahdollista luoda uusi käyttäjä annetulla käyttäjätunnuksella. Sovelluslogiikka luo _User_-olion ja tallentaa sen kutsumalla _userDao_:n metodia _create_. Tämän jälkeen käyttöliittymä vaihtaa näkymäksi _loginScenen_ eli kirjautumisnäkymän.
 
 #### jasentiedon luominen
 
@@ -100,7 +100,7 @@ Sovelluksen varsinaisen päänäkymän _createMemberButton_-painikkeen klikkaami
 
 <img src="https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/kuvat/sekvenssikaavioUusiJasen.png" width="750">
 
-[Tapahtumakäsittelijä](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/src/main/java/jasentietokannanhallinta/ui/JasentietokannanhallintaUi.java#L255) kutsuu sovelluslogiikan metodia [createNewMember](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/src/main/java/jasentietokannanhallinta/domain/JasentiedotService.java#L91) antaen parametrina luotavan jäsenen tiedot. Sovelluslogiikka luo uuden _Jasentiedot_-olion ja tallentaa sen kutsumalla _jasentiedotDao_:n metodia _create_. 
+[Tapahtumakäsittelijä](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/src/main/java/jasentietokannanhallinta/ui/JasentietokannanhallintaUi.java#L258) kutsuu sovelluslogiikan metodia [createNewMember](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/src/main/java/jasentietokannanhallinta/domain/JasentiedotService.java#L91) antaen parametrina luotavan jäsenen tiedot. Sovelluslogiikka luo uuden _Jasentiedot_-olion ja tallentaa sen kutsumalla _jasentiedotDao_:n metodia _create_. 
 
 #### muut toiminnallisuudet
 

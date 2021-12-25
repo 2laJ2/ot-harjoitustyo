@@ -9,6 +9,7 @@ Ohjelma olettaa, että sen käynnistyshakemistossa on konfiguraatiotiedosto _con
 ```
 userFile = users.txt
 jasentiedotFile = jasentiedotList.txt
+removedJasentiedotFile = vanhatJasentiedot.txt
 
 ```
 ## Ohjelman käynnistäminen
@@ -51,7 +52,7 @@ Jos uuden jäsenen luominen onnistuu, näkymän yläosaan ilmestyy vihreä tekst
 
 <img src="https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/kuvat/kayttoohje4.png" width="450">
 
-Luotu jäsentieto on mahdollista etsiä kirjoittamalla syötekenttään jäsenen nimi ja klikkaamalla painiketta _find_. Jos annetulla nimellä löytyy olemassaoleva jäsen, jäsentiedot tulevat näkyviin näkymän syötekenttin.
+Luotu jäsentieto on mahdollista etsiä kirjoittamalla syötekenttään jäsenen nimi ja klikkaamalla painiketta _find_. Jos annetulla nimellä löytyy olemassaoleva jäsen, jäsentiedot tulevat näkyviin näkymän syötekenttiin.
 
 Jos annetulla nimellä ei löydy jäsentietoja, näkymän yläosaan ilmestyy punainen teksti _member not found_.
 
@@ -62,6 +63,7 @@ Luotuja jäsentietoja on mahdollista muokata. Tämä tapahtuu kirjoittamalla jä
 Jos halutaan muuttaa olemassaolevan jäsenen nimi, tämä tehdään siten, että ensin etsitään jäsenen tiedot vanhalla nimellä. Tämän jälkeen syötekenttään näkyviin tuleva vanha nimi muutetaan ja jäsen tallennetaan kokonaan uutena jäsenenä klikkaamalla painiketta _create new member_. Jos uuden jäsenen luominen onnistuu, näkymän yläosaan ilmestyy vihreä teksti _new member created_.
 Tämän jälkeen etsitään vanhat jäsentiedot kirjoittamalla syötekenttään vanha nimi ja klikkaamalla painiketta _find_, jolloin vanhat jäsentiedot tulevat näkyviin näkymän syötekenttiin. Seuraavaksi klikataan painiketta _delete member_, jossa on punainen teksti. Jos jäsenen poistaminen onnistuu, näkymän yläosaan ilmestyy punainen teksti _member deleted_.
 Tämän jälkeen vanhalla nimellä tallennetut jäsentiedot on pysyvästi poistettu ja uudella nimellä tallennetut jäsentiedot löytyvät kirjoittamalla syötekenttään uusi nimi ja klikkaamalla painiketta _find_.
+Sovellus tallentaa poistetut jäsentiedot konfiguraatiotiedoston määrittelemään tiedostoon (removedJasentiedotFile). Sovellus antaa jokaiselle uudelle jäsenelle aina yksilöllisen jäsennumeron, poistettujen jäsenten jäsennumeroita ei anneta uudelle jäsenelle.
 
 <img src="https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/kuvat/kayttoohje6.png" width="450">
 

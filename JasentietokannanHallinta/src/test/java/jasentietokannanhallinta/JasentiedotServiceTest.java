@@ -22,8 +22,9 @@ public class JasentiedotServiceTest {
     public void setUp() {
         String fileusername = "fileusername";
         String filejasentiedotname = "filejasentiedotname";
+        String fileremoved = "fileremoved";
         userDao = new FileUserDao(fileusername);
-        jasentiedotDao = new FileJasentiedotDao(filejasentiedotname, userDao);
+        jasentiedotDao = new FileJasentiedotDao(filejasentiedotname, userDao, fileremoved);
         jasentiedotservice = new JasentiedotService(jasentiedotDao, userDao);
         jasentiedotservice.createUser("username", "name", "password");
         jasentiedotservice.login("username");
@@ -32,10 +33,34 @@ public class JasentiedotServiceTest {
     }
     
     @Test
-    public void equalWhenUserCreated() {
-        List list = new ArrayList<>();
-        list = userDao.getAll();
-        assertTrue(!list.isEmpty());
+    public void equalWhenBiggerIdRemoved() {
+        int before = jasentiedotDao.getLastRemovedMember();
+        jasentiedotservice.deleteMember("notsame");
+        jasentiedotservice.deleteMember("name");
+        int after = jasentiedotDao.getLastRemovedMember();
+        assertTrue(after > before);
+    }
+    
+    @Test
+    public void equalWhenBiggerIdForNewMember() {
+        int existing = jasentiedotDao.getLastMember();
+        jasentiedotservice.deleteMember("name");
+        jasentiedotservice.createNewMember("newname", "newaddress", "newphone");
+        int newmember = jasentiedotservice.findMemberByName("newname").getId();
+        assertTrue(existing != newmember);
+    }
+    
+    @Test
+    public void equalWhenUserCreatedWhileLogged() {
+        jasentiedotservice.createUser("newuser", "newname", "newpassword");
+        assertTrue(userDao.findUsername("newuser") != null);
+    }
+    
+    @Test
+    public void equalWhenUserCreatedWhileLoggedOut() {
+        jasentiedotservice.logout();
+        jasentiedotservice.createUser("newbieUser", "newname", "newpassword");
+        assertTrue(userDao.findUsername("newbieUser") != null);
     }
       
     @Test 
@@ -48,7 +73,7 @@ public class JasentiedotServiceTest {
     
     @Test 
     public void equalWhenJasentiedotCreated2() {
-        assertTrue(!jasentiedotDao.jasentiedotList.isEmpty());
+        assertTrue(!jasentiedotDao.getJasentiedotList().isEmpty());
     }
     
     
@@ -89,5 +114,44 @@ public class JasentiedotServiceTest {
         assertTrue(memberList.size() == 2);
     }
 
+    @Test
+    public void equalWhenChangesSaved() {
+        Jasentiedot oldJasentiedot = jasentiedotservice.findMemberByName("notsame");
+        Jasentiedot newJasentiedot = oldJasentiedot;
+        newJasentiedot.setAddress("newAddress");
+        jasentiedotservice.saveChanges(newJasentiedot, oldJasentiedot);
+        assertTrue(!jasentiedotservice.findMemberByName("notsame").getAddress().matches("address"));
+    }
+    
+    @Test
+    public void equalWhenChangesSaved2() {
+        Jasentiedot oldJasentiedot = jasentiedotservice.findMemberByName("notsame");
+        Jasentiedot newJasentiedot = oldJasentiedot;
+        newJasentiedot.setAddress("newAddress");
+        jasentiedotservice.saveChanges(newJasentiedot, oldJasentiedot);
+        assertTrue(!jasentiedotservice.getFoundMemberAddressByName("notsame").matches("address"));
+    }
+    
+    @Test
+    public void equalWhenFindsMemberPhoneByName() {
+        String phonenumber = jasentiedotservice.getFoundMemberPhoneByName("notsame");
+        jasentiedotservice.deleteMember("notsame");
+        assertTrue(phonenumber.matches("phone")&&jasentiedotservice.doesMemberNameExist("notsame") == false);
+    }
+    
+    @Test
+    public void equalWhenMemberNotExistNotDeleted() {
+        assertTrue(!jasentiedotservice.deleteMember("notexist"));
+    }
+    
+    @Test
+    public void equalWhenMemberNotExistNotDeleted2() {
+        User user = userDao.findUsername("username");
+        Jasentiedot jasentiedot = new Jasentiedot(5, "newmembername", "newmemberaddress", "newmemberphone", user);
+        jasentiedotservice.deleteMember("notsame");
+        assertTrue(!jasentiedotDao.removeMember(jasentiedot));
+    }
+    
 }
 
+    

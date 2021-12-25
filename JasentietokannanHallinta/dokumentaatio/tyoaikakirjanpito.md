@@ -53,8 +53,16 @@
 |        |        | checkstyle-tarkistus |
 |        | 1      | tutustuminen luokkakaavioiden piirto-ohjelmaan sivulla https://app.diagrams.net/ ja käyttöliittymäluonnoksen päivittäminen |
 | 22.12. | 3      | pakkausrakenne-, looginen datamalli-, pakkauskaavio- ja kolmen sekvenssikaavioluonnoksen päivittäminen drawio:n avulla |
-|        | 3.5    | users.txt ja jasentiedotList.txt tiedostojen nimet määrittelevän konfiguraatiotiedoston lisääminen |
-|        |        | konfiguraatiotiedostoon vaadittavien java.io.FileInputStream ja java.util.Properties käyttöönotto |
+|        | 4      | users.txt ja jasentiedotList.txt tiedostojen nimet määrittelevän konfiguraatiotiedoston lisääminen |
+|        |        | konfiguraatiotiedoston käyttöön vaadittavien java.io.FileInputStream ja java.util.Properties käyttöönotto |
 |        |        | jäsentietojen pysyvässä tallennuksessa olleen bugin korjaaminen |
 |        |        | dokumentaation päivitystä |
-| yht.	 | 71.5   | |
+|        |        | testaus.md päivitys |
+| 23.12. | 2.5    | uusi toiminto; poistetut jäsentiedot tallennetaan konfiguraatiotiedostossa määritettyyn tiedostoon |
+|        |        | uusi ominaisuus; uutta jäsentä luotaessa järjestelmä tarkistaa sekä nykyisistä että poistetuista jäsenistä, mikä on suurin annettu id ja antaa seuraavan numeron |
+|        | 1.5    | uusien metodien luominen, checkstyle-tarkistus |
+|        | 0.5    | bugin korjaaminen; tallentaa myös kun muokataan olemassaolevia jäsentietoja |
+|        | 3      | uusien testien lisääminen, javadocin päivitys |
+| 25.12. | 3      | uusien testien lisääminen, checkstyle-tarkistus, testikattavuus |
+|        | 2      | dokumentaation päivitys |
+| yht.	 | 83.5   | |

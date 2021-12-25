@@ -1,6 +1,6 @@
 # JasentietokannanHallinta
 
-Sovelluksen avulla käyttäjän on mahdollista käyttää ja hallita urheiluseuran jäsentietokantaa. Sovellusta voi käyttää useampi rekisteröitynyt käyttäjä, joilla on yksilöllisesti määritelty pääsy jäsentietoihin.
+Sovelluksen avulla käyttäjän on mahdollista käyttää ja hallita urheiluseuran jäsentietokantaa. Sovellusta voi käyttää useampi rekisteröitynyt käyttäjä, joilla on yhtäläinen pääsy jäsentietoihin.
 
 ## Huomio JavaFX konfiguroinnin aiheuttamista ongelmista
 
@@ -14,7 +14,9 @@ Ohjelma toteuttaa seuraavat määrittelydokumentissa kuvaillut toiminnot:
 
 - (pää)käyttäjä voi luoda järjestelmään käyttäjätunnuksen
   - käyttäjätunnuksen täytyy olla uniikki ja pituudeltaan vähintään 3 merkkiä
-  - salasanan täytyy olla uniikki ja pituudeltaan vähintään 10 merkkiä
+  - käyttäjän nimen täytyy olla pituudeltaan vähintään 3 merkkiä
+  - salasanan täytyy olla pituudeltaan vähintään 10 merkkiä 
+  - samalla nimellä voi luoda eri käyttäjätunnuksia eri rooleihin tai käyttötarkoituksiin
 
 - (pää)käyttäjä voi kirjautua järjestelmään
   - olemassaoleva käyttäjätunnus ja salasana syötetään kirjautumislomakkeelle
@@ -24,10 +26,13 @@ Ohjelma toteuttaa seuraavat määrittelydokumentissa kuvaillut toiminnot:
 
 - (pää)käyttäjä näkee seuran jäsentietokantavalikon / varsinaisen päänäkymän
   - (pää)käyttäjä voi valita haluamansa toiminnon
-  - jäsentietojen haku tietokannasta halutuilla kriteereillä, jolloin järjestelmä näyttää jäsenen nimi-, osoite- ja puhelinnumerotiedot 
-    - järjestelmä löytää samalla käyttökerralla järjestelmään tallennetun jäsenen annetun nimen perusteella (toistaiseksi järjestelmä ei vielä tallenna jäseniä seuraavaa sovelluksen käynnistyskertaa varten)    
+  - jäsentietojen haku tietokannasta nimellä, jolloin järjestelmä näyttää jäsenen nimi-, osoite- ja puhelinnumerotiedot 
+    - järjestelmä löytää samalla käyttökerralla järjestelmään tallennetun jäsenen annetun nimen perusteella  
   - uuden jäsenen luominen 
     - jäsenestä tallennetaan jäsentietoihin nimi, osoite ja puhelinnumero
+    - jäsenen nimen tulee olla uniikki ja pituudeltaan vähintään 3 merkkiä, osoitteen tulee olla vähintään 3 merkkiä ja puhelinnumeron 8 merkkiä
+    - uudelle jäsenelle on mahdollista antaa nimi, joka on aiemmin poistettu jäsentiedostosta; järjestelmä tarkistaa ainoastaan nykyisten jäsenten nimet
+    - järjestelmä antaa kullekin uudelle jäsenelle yksilöllisen jäsennumeron; aiemmin poistettujen jäsenten jäsennumeroita ei anneta uudelle jäsenelle
   - jäsentietojen muokkaus
     - aiemmin luodun jäsenen osoite- ja puhelinnumerotiedon voi vaihtaa, jolloin ohjelma ei tarkasta, täyttävätkö osoite- ja puhelinnumerotiedot vähimmäispituusvaatimuksen
       (tämä on hyödyllinen ominaisuus siltä varalta, että jäsenen todelliset osoite- ja puhelinnumerotiedot eivät täytä annettuja kriteerejä)
@@ -35,12 +40,14 @@ Ohjelma toteuttaa seuraavat määrittelydokumentissa kuvaillut toiminnot:
   - jäsenen poistaminen
     - toiminto poistaa pysyvästi jäsenen, jonka nimi on jäsentietokentässä (ei jäsentietojen haku -kentässä)
       (tämä on tarpeellinen toiminto tilanteessa, missä halutaan vaihtaa jäsenen nimi - ensin luodaan uudella nimellä kokonaan uusi jäsen, minkä jälkeen poistetaan vanhalla nimellä luotu jäsen)
+    - toiminto tallentaa poistetun jäsenen erilliseen poistettujen jäsenten arkistointitiedostoon
 
 - siirryttäessä näkymästä toiseen järjestelmä tyhjentää tekstikentät, jolloin siirryttäessä samaan näkymään uudelleen näkymässä ei ole edellisen käyttökerran tietoja / ilmoituksia
 
-- myöhemmin lisättävillä normaaleilla käyttäjillä voidaan rajoittaa pääsy vain osaan jäsentietokannan tiedoista 
-
 - käyttäjä voi kirjautua ulos järjestelmästä
+
+- eri käyttäjillä on pääsy samoihin jäsentietoihin
+
 - seuraavalla käyttökerralla järjestelmä muistaa käyttäjän, käyttäjä voi kirjautua järjestelmään antamalla käyttäjätunnuksen ja salasanan, jonka oikeellisuuden järjestelmä tarkistaa
 
 ## Dokumentaatio
@@ -56,6 +63,8 @@ Ohjelma toteuttaa seuraavat määrittelydokumentissa kuvaillut toiminnot:
 [Työaikakirjanpito](https://github.com/2laJ2/ot-harjoitustyo/blob/master/JasentietokannanHallinta/dokumentaatio/tyoaikakirjanpito.md)
 
 ## Releaset
+
+[Viikko 7](https://github.com/2laJ2/ot-harjoitustyo/releases/tag/viikko7)
 
 [Viikko 6](https://github.com/2laJ2/ot-harjoitustyo/releases/tag/viikko6)
 
@@ -99,7 +108,7 @@ generoi hakemistoon _target_ suoritettavan jar-tiedoston _JasentietokannanHallin
 
 ### Ohjelman lataaminen ja käynnistäminen omalla linux-koneella
 
-Tallenna sivulta [Release](https://github.com/2laJ2/ot-harjoitustyo/releases/tag/viikko6) löytyvä tiedosto _JasentietokannanHallinta-1.0-SNAPSHOT.jar_ omalle koneellesi esim. kansioon Downloads. 
+Tallenna sivulta [Release](https://github.com/2laJ2/ot-harjoitustyo/releases/tag/viikko7) löytyvä tiedosto _JasentietokannanHallinta-1.0-SNAPSHOT.jar_ omalle koneellesi esim. kansioon Downloads. 
 
 Ohjelman voi käynnistää komentoriviltä saman tiedostokansion sisältä, mihin tiedosto _JasentietokannanHallinta-1.0-SNAPSHOT.jar_ on tallennettu (esim. Downloads). Käynnistä ohjelma komennolla 
 
@@ -107,7 +116,7 @@ Ohjelman voi käynnistää komentoriviltä saman tiedostokansion sisältä, mihi
 java -jar JasentietokannanHallinta-1.0-SNAPSHOT.jar
 ```
 
-Ohjelma luo suorituksen aikana suoritushakemistoon (esim. Downloads) tiedostot _jasentiedotList.txt_ ja _users.txt_, joihin se tallentaa sovelluksen käyttämiä tietoja. Sovellus olettaa, että sillä on nämä tiedostot käytettävissään.
+Ohjelma luo suorituksen aikana suoritushakemistoon (esim. Downloads) tiedostot _jasentiedotList.txt_, _users.txt_ ja _vanhatJasentiedot.txt_, joihin se tallentaa sovelluksen käyttämiä tietoja. Sovellus olettaa, että sillä on nämä tiedostot käytettävissään.
 
 ### JavaDoc
 

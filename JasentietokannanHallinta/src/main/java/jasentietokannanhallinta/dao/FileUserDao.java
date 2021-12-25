@@ -5,7 +5,7 @@ import java.util.*;
 import jasentietokannanhallinta.domain.User;
 
 /**
- * Käyttäjätietojen hallinnasta vastaava luokka
+ * käyttäjätietojen hallinnasta vastaava luokka
  */
 public class FileUserDao {
     
@@ -13,7 +13,7 @@ public class FileUserDao {
     private String file;
     
     /**
-     * Käyttäjätietojen hallinnasta vastaavan luokan konstruktori
+     * käyttäjätietojen hallinnasta vastaavan luokan konstruktori
      * @param file
      */
     public FileUserDao(String file) {

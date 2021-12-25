@@ -7,7 +7,7 @@ import jasentietokannanhallinta.domain.Jasentiedot;
 import jasentietokannanhallinta.domain.User;
 
 /**
- * Jasentietojen hallinnasta vastaava luokka
+ * jäsentietojen hallinnasta vastaava luokka
  */
 public class FileJasentiedotDao {
     
@@ -17,22 +17,40 @@ public class FileJasentiedotDao {
     private List<Jasentiedot> jasentiedotList;
     private String file;
     private FileUserDao users;
+    private int lastMember;
+    private String removedJasentiedotFile;
+    private List<Jasentiedot> removedJasentiedotList;
+    private int lastRemovedMember;
     
     /**
-     * Jäsentietojen hallinnasta vastaavan luokan konstruktori
+     * jäsentietojen hallinnasta vastaavan luokan konstruktori
      * @param file
      * @param users
+     * @param removed
      */
-    public FileJasentiedotDao(String file, FileUserDao users) {
+    public FileJasentiedotDao(String file, FileUserDao users, String removed) {
         jasentiedotList = new ArrayList<>();
         this.file = file;
         this.users = users;
-        load();
-    }    
+        this.lastMember = 0;
+        this.removedJasentiedotFile = removed;
+        this.removedJasentiedotList = new ArrayList<>();
+        this.lastRemovedMember = 0;
+        
+        load(jasentiedotList, file);
+        load(removedJasentiedotList, removedJasentiedotFile);
+        checkLast();
+    } 
     
-    private void load() {    
+    private void checkLast() {
+        if (lastRemovedMember > lastMember) {
+            lastMember = lastRemovedMember;
+        }
+    }
+    
+    private void load(List<Jasentiedot> listWanted, String fileWanted) {    
         try {
-            Scanner reader = new Scanner(new File(file));
+            Scanner reader = new Scanner(new File(fileWanted));
             while (reader.hasNextLine()) {
                 String[]parts = reader.nextLine().split(";");
                 int id = Integer.parseInt(parts[0]);
@@ -41,17 +59,32 @@ public class FileJasentiedotDao {
                 String phone = String.valueOf(parts[3]);
                 User user = users.getAll().stream().filter(j->j.getUsername().equals(parts[4])).findFirst().orElse(null);
                 Jasentiedot jasentiedot = new Jasentiedot(id, parts[1], parts[2], parts[3], user);
-                jasentiedotList.add(jasentiedot);
+                updateMemberId(id, fileWanted, listWanted);
+                listWanted.add(jasentiedot);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        checkLast();
     }
     
-    private void save() {
+    private void updateMemberId(int temp, String fileWanted, List listWanted) {
+        if (fileWanted.matches(file)) {
+            if (temp > lastMember) {
+                lastMember = temp;
+            }
+        }
+        if (fileWanted.matches(removedJasentiedotFile)) {
+            if (temp > lastRemovedMember) {
+                lastRemovedMember = temp;
+            }
+        }
+    }
+    
+    private void save(List<Jasentiedot> listWanted, String fileWanted) {
         try {
-            FileWriter writer = new FileWriter(new File(file));
-            for (Jasentiedot jasentiedot:jasentiedotList) {
+            FileWriter writer = new FileWriter(new File(fileWanted));
+            for (Jasentiedot jasentiedot:listWanted) {
                 writer.write(jasentiedot.getId() + ";" + jasentiedot.getName() + ";" + 
                              jasentiedot.getAddress() + ";" + jasentiedot.getPhone() + ";" + jasentiedot.getUser().getUsername() + "\n");
             }
@@ -62,7 +95,8 @@ public class FileJasentiedotDao {
     }
     
     private int generateId() {
-        return jasentiedotList.size() + 1;
+        lastMember += 1;
+        return lastMember;
     }
     
     /**
@@ -78,9 +112,10 @@ public class FileJasentiedotDao {
      * @param jasentiedot
      */
     public void create(Jasentiedot jasentiedot) {
+        checkLast();
         jasentiedot.setId(generateId());
         jasentiedotList.add(jasentiedot);
-        save();
+        save(jasentiedotList, file);
     }
     
     /**
@@ -98,9 +133,58 @@ public class FileJasentiedotDao {
      * @return true, jos jäsen poistaminen on onnistunut, muuten false
      */
     public boolean removeMember(Jasentiedot jasentiedot) {
+        if (!jasentiedotList.contains(jasentiedot)) {
+            return false;
+        }
+        int temp = jasentiedot.getId();
+        if (temp > lastRemovedMember) {
+            lastRemovedMember = temp;
+        }
+        removedJasentiedotList.add(jasentiedot);
+        checkLast();
+        save(removedJasentiedotList, removedJasentiedotFile);
         jasentiedotList.remove(jasentiedot);
-        save();
+        save(jasentiedotList, file);
         return true;
     }
     
+    /**
+     * jäsenentietojen haku jäsentiedostosta listana
+     * @param 
+     * @return jasentiedotlist
+     */
+    public List getJasentiedotList() {
+        return this.jasentiedotList;
+    }
+    
+    /**
+     * tallentaa olemassaolevan Jasentiedon muutokset jäsentiedostoon
+     * @param newJasentiedot 
+     * @param oldJasentiedot 
+     */
+    public void saveEdit(Jasentiedot newJasentiedot, Jasentiedot oldJasentiedot) {
+        jasentiedotList.remove(oldJasentiedot);
+        jasentiedotList.add(newJasentiedot);
+        save(jasentiedotList, file);
+    }
+    
+    /**
+     * suurin uudelle jäsenelle annettu jäsennumero
+     * @param 
+     * @return jäsennumero
+     */
+    public int getLastMember() {
+        return this.lastMember;
+    }
+    
+    /**
+     * suurin poistetulle jäsenelle annettu jäsennumero
+     * @param 
+     * @return jäsennumero
+     */
+    public int getLastRemovedMember() {
+        return this.lastRemovedMember;
+    }
+    
 }
+

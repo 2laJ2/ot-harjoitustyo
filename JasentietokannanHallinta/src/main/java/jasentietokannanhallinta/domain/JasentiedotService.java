@@ -5,7 +5,7 @@ import jasentietokannanhallinta.dao.FileJasentiedotDao;
 import jasentietokannanhallinta.dao.FileUserDao;
 
 /**
- * Sovelluslogiikasta vastaava luokka
+ * sovelluslogiikasta vastaava luokka
  */
 public class JasentiedotService {
     
@@ -18,7 +18,7 @@ public class JasentiedotService {
     private User loggedIn;
     
     /**
-     * Sovelluslogiikasta vastaavan luokan konstruktori
+     * sovelluslogiikasta vastaavan luokan konstruktori
      * @param jasentiedotDao
      * @param userDao
      */
@@ -78,13 +78,13 @@ public class JasentiedotService {
      * @return true, jos käyttäjätunnuksen luominen on onnistunut, muuten false
      */
     public boolean createUser(String username, String name, String password) {
-        if (userDao.findUsername(username) == null) {
+        if (userDao.findUsername(username) != null) {
+            return false;
+        } else {
             User user = new User(username, name, password);
             userDao.create(user);
             return true;
-        }
-        return false;
-        
+        }   
     }
         
     /**
@@ -158,5 +158,13 @@ public class JasentiedotService {
         return false;
     }
     
+    /**
+     * olemassaolevan jäsenen jäsentietojen muutos jäsentiedostoon
+     * @param newJasentiedot
+     * @param oldJasentiedot
+     */
+    public void saveChanges(Jasentiedot newJasentiedot, Jasentiedot oldJasentiedot) {
+        jasentiedotDao.saveEdit(newJasentiedot, oldJasentiedot);
+    }
+    
 }
-        

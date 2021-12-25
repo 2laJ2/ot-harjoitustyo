@@ -41,7 +41,6 @@ Alkuvaiheessa sovelluksella on vain yksi käyttäjärooli, eli pääkäyttäjä.
 
 - (pää)käyttäjä voi valita haluamansa toiminnon
   - jäsentietojen haku tiedostosta nimellä, jolloin järjestelmä näyttää jäsenen nimi-, osoite- ja puhelinnumerotiedot 
-    - järjestelmä löytää samalla käyttökerralla järjestelmään tallennetun jäsenen annetun nimen ollessa oikea   
   - uuden jäsenen luominen 
     - jäsenestä tallennetaan jäsentietoihin nimi, osoite ja puhelinnumero
     - jäsenen nimen tulee olla uniikki ja pituudeltaan vähintään 3 merkkiä, osoitteen tulee olla vähintään 3 merkkiä ja puhelinnumeron 8 merkkiä

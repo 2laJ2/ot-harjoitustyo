@@ -107,9 +107,9 @@ generoi hakemistoon _target_ suoritettavan jar-tiedoston _JasentietokannanHallin
 
 ### Ohjelman lataaminen ja käynnistäminen omalla linux-koneella
 
-Tallenna sivulta [Release](https://github.com/2laJ2/ot-harjoitustyo/releases/tag/viikko7) löytyvä tiedosto _JasentietokannanHallinta-1.0-SNAPSHOT.jar_ omalle koneellesi esim. kansioon Downloads. 
+Tallenna sivulta [Release](https://github.com/2laJ2/ot-harjoitustyo/releases/tag/viikko7) löytyvät tiedostot _JasentietokannanHallinta-1.0-SNAPSHOT.jar_ ja _config.properties_ omalle koneellesi esim. kansioon Downloads. 
 
-Ohjelman voi käynnistää komentoriviltä saman tiedostokansion sisältä, mihin tiedosto _JasentietokannanHallinta-1.0-SNAPSHOT.jar_ on tallennettu (esim. Downloads). Käynnistä ohjelma komennolla 
+Ohjelman voi käynnistää komentoriviltä saman tiedostokansion sisältä, mihin tiedostot _JasentietokannanHallinta-1.0-SNAPSHOT.jar_ ja _config.properties_ on tallennettu (esim. Downloads). Käynnistä ohjelma komennolla 
 
 ```
 java -jar JasentietokannanHallinta-1.0-SNAPSHOT.jar

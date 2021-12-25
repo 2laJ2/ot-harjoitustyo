@@ -64,5 +64,5 @@
 |        | 0.5    | bugin korjaaminen; tallentaa myös kun muokataan olemassaolevia jäsentietoja |
 |        | 3      | uusien testien lisääminen, javadocin päivitys |
 | 25.12. | 3      | uusien testien lisääminen, checkstyle-tarkistus, testikattavuus |
-|        | 2.5    | dokumentaation päivitys, GitHub REleasen tekeminen |
+|        | 2.5    | dokumentaation päivitys, GitHub Releasen tekeminen |
 | yht.	 | 84     | |

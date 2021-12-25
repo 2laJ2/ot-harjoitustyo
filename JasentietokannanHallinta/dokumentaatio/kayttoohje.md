@@ -14,7 +14,7 @@ removedJasentiedotFile = vanhatJasentiedot.txt
 ```
 ## Ohjelman käynnistäminen
 
-Ohjelma käynnistetään komennolla
+Kun käynnistyshakemistossa on ylläolevan kuvauksen mukainen konfiguraatiotiedosto, ohjelma käynnistyy komennolla
 
 ```
 java -jar JasentietokannanHallinta-1.0-SNAPSHOT.jar
